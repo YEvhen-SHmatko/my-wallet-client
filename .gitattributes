@@ -1,2 +1,4 @@
 * eol=lf
-*.txt -crlf
+*.png -crlf
+*.ico -crlf
+*.jpeg -crlf
