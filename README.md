@@ -6,4 +6,4 @@
 
 # "license": "MIT",
 
-## "Information": [Open information](https://github.com/YEvhen-SHmatko/my-wallet/INFO.md)
+## "Information": [Open information](https://github.com/YEvhen-SHmatko/my-wallet/blob/master/INFO.md)
