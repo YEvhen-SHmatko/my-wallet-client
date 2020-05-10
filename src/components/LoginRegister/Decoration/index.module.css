@@ -1,0 +1,24 @@
+.section {
+  position: relative;
+  width: 100%;
+}
+.element {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.img {
+  width: 90px;
+  height: 90px;
+  stroke-width: 4px;
+  opacity: 0.4;
+}
+.shadow {
+  margin-top: 0.66rem;
+  width: 70px;
+  height: 14px;
+  background: #f4f6fb;
+  border-radius: 50%;
+}

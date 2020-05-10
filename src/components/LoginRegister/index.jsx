@@ -3,7 +3,7 @@ import Styles from './index.module.css';
 import Logo from './Logo';
 import AuthFormWrap from './AuthFormWrap';
 import Background from './Background';
-// import OtherIcon from './OtherIcon';
+import Decoration from './Decoration';
 import Title from './Title';
 
 export default function LoginRegister() {
@@ -13,7 +13,8 @@ export default function LoginRegister() {
         <Logo />
       </header>
       <main className={Styles.main}>
-        <Background />
+        <Decoration />
+        {/* <Background /> */}
         <div className={Styles.section}>
           <div className={Styles.first}>
             <Title />
