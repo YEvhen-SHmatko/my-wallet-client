@@ -10,6 +10,7 @@
   display: flex;
 }
 .section {
+  z-index: 20;
   position: absolute;
   width: 100%;
   max-width: 1280px;
