@@ -1,7 +1,7 @@
 import React from 'react';
 import Styles from './index.module.css';
 import Logo from './Logo';
-// import AuthFormWrap from './AuthFormWrap';
+import AuthFormWrap from './AuthFormWrap';
 import Background from './Background';
 // import OtherIcon from './OtherIcon';
 import Title from './Title';
@@ -19,7 +19,7 @@ export default function LoginRegister() {
             <Title />
           </div>
           <div className={Styles.second}>
-            <div className={Styles.form}>form</div>
+            <AuthFormWrap />
           </div>
         </div>
       </main>

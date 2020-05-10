@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 12px 22px;
 }
@@ -12,7 +12,7 @@
 .section {
   position: absolute;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1280px;
   left: 50%;
   transform: translateX(-50%);
   height: 290px;
@@ -34,16 +34,6 @@
   height: 535px;
   bottom: -460px;
 }
-.form {
-  width: 304px;
-  height: 535px;
-  border-radius: 25px;
-  filter: drop-shadow(4.5px 7.794px 10.5px rgba(170, 178, 197, 0.78));
-  background-color: #ffffff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 @media (min-width: 767px) {
   .section {
     height: 510px;
@@ -53,9 +43,6 @@
   }
   .second {
     bottom: -260px;
-  }
-  .form {
-    width: 420px;
   }
 }
 @media (min-width: 1279px) {

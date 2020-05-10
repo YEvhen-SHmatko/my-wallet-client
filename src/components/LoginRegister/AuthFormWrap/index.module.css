@@ -1,0 +1,46 @@
+.form {
+  width: 304px;
+  height: 535px;
+  border-radius: 25px;
+  filter: drop-shadow(4.5px 7.794px 10.5px rgba(170, 178, 197, 0.78));
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 20px;
+}
+.text {
+  font-size: 11px;
+  letter-spacing: 0px;
+  line-height: 17px;
+  color: #52555f;
+  font-weight: 400;
+  text-align: center;
+}
+.firstText {
+  composes: text;
+  width: 90%;
+  margin: 0 auto;
+}
+.secondText {
+  composes: text;
+  text-align: start;
+  padding-right: 30px;
+  margin-right: 0px;
+}
+@media (min-width: 767px) {
+  .form {
+    width: 420px;
+    padding: 50px 70px;
+  }
+  .text {
+    font-size: 14px;
+    text-align: start;
+  }
+  .firstText {
+    width: 100%;
+  }
+  .secondText {
+    padding-right: 0px;
+    margin-right: -20px;
+  }
+}
