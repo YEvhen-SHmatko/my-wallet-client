@@ -1,0 +1,44 @@
+.main {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  display: block;
+}
+.footer {
+  bottom: 0;
+  width: 100%;
+  height: 234px;
+}
+.mainHeader {
+  color: #000;
+  width: 100%;
+  min-height: 130px;
+  display: flex;
+}
+.start {
+  width: 30%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.center {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.end {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.mainBody {
+  z-index: 4;
+  width: 100%;
+  border-top-left-radius: 0 !important;
+}
+@media (min-width: 767px) {
+}
+@media (min-width: 1279px) {
+}
