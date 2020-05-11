@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Styles from './index.module.css';
 
-import GoogleAuth from './GoogleAuth';
-import AuthInput from './AuthInput';
-import NavAuth from './NavAuth';
+import GoogleAuth from '../GoogleAuth';
+import AuthInput from '../AuthInput';
+import NavAuth from '../NavAuth';
 
 export default class index extends Component {
   state = {};

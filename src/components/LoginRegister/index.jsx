@@ -1,11 +1,10 @@
 import React from 'react';
 import Styles from './index.module.css';
-import Logo from './Logo';
-import AuthFormWrap from './AuthFormWrap';
-import Background from './Background';
-import DecorationBig from './DecorationBig';
-import DecorationLitle from './DecorationLitle';
-import Title from './Title';
+import Logo from '../Logo';
+import AuthFormWrap from '../AuthFormWrap';
+import Background from '../Background';
+import Title from '../Title';
+import Decoration from '../Decoration';
 
 export default function LoginRegister() {
   return (
@@ -14,8 +13,7 @@ export default function LoginRegister() {
         <Logo />
       </header>
       <main className={Styles.main}>
-        <DecorationBig />
-        <DecorationLitle />
+        <Decoration />
         <Background />
         <div className={Styles.section}>
           <div className={Styles.first}>
