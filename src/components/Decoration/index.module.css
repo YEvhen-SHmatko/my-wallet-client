@@ -1,0 +1,43 @@
+.first {
+  z-index: 20;
+  opacity: 0.3;
+  min-height: 236px;
+  background: url('./images/decoration.png');
+}
+.second {
+  z-index: 20;
+  min-height: 160px;
+  background: url('./images/decorationLitle.png');
+  opacity: 0.4;
+}
+.decorMobile {
+  width: 26%;
+  position: absolute;
+  right: 0;
+}
+.decorTablet {
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 22%;
+}
+.decorTablet_first {
+  composes: decorTablet;
+  transform: rotate(180deg);
+}
+.decorTablet_second {
+  composes: decorTablet;
+  right: 0;
+  top: 480px;
+}
+.decorDesktop_first {
+  width: 100%;
+  margin-top: 26px;
+}
+.decorDesktop_second {
+  margin-top: 80px;
+  position: absolute;
+  background-repeat: no-repeat;
+  width: 100%;
+  top: 500px;
+  left: 15%;
+}

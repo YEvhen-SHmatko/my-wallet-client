@@ -1,4 +1,11 @@
-* eol=lf
+* text eol=lf
+#
+# Фонты
+#
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
 
 #
 # Строка выше будет обрабатывать все файлы, которых нет в списке ниже.
