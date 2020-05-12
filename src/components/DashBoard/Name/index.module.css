@@ -1,0 +1,24 @@
+.name {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (min-width: 767px) {
+  .name {
+    width: 100%;
+    font-size: 13px;
+    font-weight: 400;
+    max-width: 230px;
+    padding: 0 14px;
+  }
+}
+
+@media (min-width: 1279px) {
+  .name {
+    width: 100%;
+    max-width: 270px;
+    padding: 0 20px;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Styles from './index.module.css';
 
-export default function index() {
+const index = () => {
   return <section className={Styles.section} />;
-}
+};
+export default index;

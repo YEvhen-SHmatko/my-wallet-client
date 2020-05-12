@@ -1,0 +1,54 @@
+.modal {
+  z-index: 1000;
+  position: absolute;
+  top: -54px;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.section {
+  overflow-y: scroll;
+  padding: 0 20px;
+  background: #fff;
+}
+.list {
+  composes: col;
+  font-size: 9px;
+  font-weight: 400;
+  list-style: none;
+}
+.item {
+  composes: row;
+  height: 54px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* //-----// Mobile //-----// */
+.M_first {
+  width: 50%;
+}
+.M_info {
+  composes: row;
+  margin-top: 8px;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+.M_second {
+  composes: row;
+  width: 50%;
+  justify-content: flex-end;
+}
+
+/* //-----// Tablet //-----// */
