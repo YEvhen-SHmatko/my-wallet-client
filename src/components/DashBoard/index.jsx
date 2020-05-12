@@ -9,7 +9,43 @@ import Wrapper from '../Wrapper';
 import Decoration from '../Decoration/First';
 import NavDashBoard from './NavDashBoard';
 import Balance from './Balance';
+import Report from './Report';
+import Calendar from './Calendar';
 // import Loader from '../Loader';
+import { Mobile, Default } from '../../services/media-query';
+
+const DashBoardHeader = () => {
+  return (
+    <>
+      <Mobile>
+        <div className={Styles.mainHeader}>
+          <div className={Styles.center}>
+            <Report />
+          </div>
+          <div className={Styles.center}>
+            <Balance value={1} />
+          </div>
+          <div className={Styles.center}>
+            <Calendar data="17.05.1991" />
+          </div>
+        </div>
+      </Mobile>
+      <Default>
+        <div className={Styles.mainHeader}>
+          <div className={Styles.start}>
+            <NavDashBoard />
+          </div>
+          <div className={Styles.center}>
+            <Balance value={1} />
+          </div>
+          <div className={Styles.end}>
+            <Report />
+          </div>
+        </div>
+      </Default>
+    </>
+  );
+};
 export default class index extends Component {
   state = {};
 
@@ -20,33 +56,23 @@ export default class index extends Component {
         <main className={Styles.main}>
           <Background />
           <Container>
-            <div>
-              <div className={Styles.mainHeader}>
-                <div className={Styles.start}>
-                  <NavDashBoard />
-                </div>
-                <div className={Styles.center}>
-                  <Balance value={1} />
-                </div>
-                <div className={Styles.end}>end</div>
-              </div>
-              <Wrapper newStyles={Styles.mainBody}>
-                <Suspense fallback="Loader">
-                  <Switch>
-                    <Route
-                      path={routes.Expenses.path}
-                      exact
-                      component={routes.Expenses.component}
-                    />
-                    <Route
-                      path={routes.Income.path}
-                      exact
-                      component={routes.Income.component}
-                    />
-                  </Switch>
-                </Suspense>
-              </Wrapper>
-            </div>
+            <DashBoardHeader />
+            <Wrapper newStyles={Styles.mainBody}>
+              <Suspense fallback="Loader">
+                <Switch>
+                  <Route
+                    path={routes.Expenses.path}
+                    exact
+                    component={routes.Expenses.component}
+                  />
+                  <Route
+                    path={routes.Income.path}
+                    exact
+                    component={routes.Income.component}
+                  />
+                </Switch>
+              </Suspense>
+            </Wrapper>
           </Container>
         </main>
         <footer>
