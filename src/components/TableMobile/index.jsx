@@ -66,7 +66,7 @@ class index extends Component {
                   ))}
                 </ul>
               </section>
-              <section>
+              <section className={Styles.btn}>
                 <Button title="Pасход" onClick={this.openModal} />
                 <Button title="Доход" onClick={this.openModal} />
               </section>

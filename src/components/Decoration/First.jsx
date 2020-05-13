@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Styles from './index.module.css';
 
-const First = ({ newStyles }) => {
+const index = ({ newStyles }) => {
   return <div className={[Styles.first, newStyles].join(' ')} />;
 };
-First.propTypes = {
-  newStyles: PropTypes.string.isRequired,
+
+index.defaultProps = {
+  newStyles: '',
 };
-export default First;
+index.propTypes = {
+  newStyles: PropTypes.string,
+};
+export default index;

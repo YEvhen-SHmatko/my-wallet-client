@@ -1,6 +1,6 @@
 import React from 'react';
 import Balance from '../Balance';
-import Report from '../Report';
+import ReportLink from '../ReportLink';
 import Calendar from '../Calendar';
 import NavDashBoard from '../NavDashBoard';
 import { Mobile, Default } from '../../services/media-query';
@@ -13,7 +13,7 @@ export default function index() {
       <Mobile>
         <div className={Styles.mainHeader}>
           <div className={Styles.center}>
-            <Report />
+            <ReportLink />
           </div>
           <div className={Styles.center}>
             <Balance value={1} />
@@ -32,7 +32,7 @@ export default function index() {
             <Balance value={1} />
           </div>
           <div className={Styles.end}>
-            <Report />
+            <ReportLink />
           </div>
         </div>
       </Default>
