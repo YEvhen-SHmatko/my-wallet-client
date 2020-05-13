@@ -1,0 +1,36 @@
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.section {
+  width: 760px;
+}
+.list {
+  composes: col;
+  font-size: 9px;
+  font-weight: 400;
+  list-style: none;
+  height: 390px;
+  overflow-y: scroll;
+  border-bottom: 4px solid #f4f6fb;
+}
+.item {
+  composes: row;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px solid #f4f6fb;
+}
+.item:nth-child(1n) {
+  border-left: 6px solid #f4f6fb;
+}
+.thead {
+  composes: item;
+  background: #f4f6fb;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}

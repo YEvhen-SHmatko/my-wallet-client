@@ -1,0 +1,25 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 40px;
+}
+.section {
+  padding: 30px;
+}
+.main {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 767px) {
+  .row {
+    padding-bottom: 40px;
+  }
+}
+
+@media (min-width: 1279px) {
+  .row {
+    padding-bottom: 60px;
+  }
+}

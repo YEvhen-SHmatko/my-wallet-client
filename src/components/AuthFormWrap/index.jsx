@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Styles from './index.module.css';
-
+import Wrapper from '../Wrapper';
 import GoogleAuth from '../GoogleAuth';
 import AuthInput from '../AuthInput';
 import NavAuth from '../NavAuth';
@@ -10,7 +10,7 @@ export default class index extends Component {
 
   render() {
     return (
-      <div className={Styles.form}>
+      <Wrapper newStyles={Styles.form}>
         <p className={Styles.firstText}>
           Вы можете авторизироваться с помощью google account:
         </p>
@@ -22,7 +22,7 @@ export default class index extends Component {
         </p>
         <AuthInput />
         <NavAuth />
-      </div>
+      </Wrapper>
     );
   }
 }

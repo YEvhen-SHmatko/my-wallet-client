@@ -1,0 +1,38 @@
+.section {
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.btn {
+  width: 100px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #52555f;
+  font-weight: 900;
+  text-align: center;
+  text-decoration: none;
+  background: transparent;
+  border: 0px solid transparent;
+  transition: all, 0.5s;
+}
+.icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.6;
+  background-image: url('./images/calendar.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+@media (min-width: 767px) {
+  .section {
+    max-width: 130px;
+    height: 40px;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1279px) {
+  .section {
+  }
+}

@@ -1,0 +1,8 @@
+.form {
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  box-shadow: 4.5px 7.794px 10.5px rgba(170, 178, 197, 0.78);
+  background-color: #ffffff;
+}
