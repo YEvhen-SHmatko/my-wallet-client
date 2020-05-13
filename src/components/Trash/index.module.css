@@ -1,0 +1,42 @@
+.trash {
+  width: 34px;
+  height: 34px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background-image: url('./images/trash.png');
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 14px;
+  transition: all, 0.5s;
+}
+.trash:hover {
+  border: 1px solid #f4f6fb;
+  background-color: #f4f6fb;
+}
+@media (min-width: 767px) {
+  .section {
+    width: 100%;
+    font-size: 13px;
+    font-weight: 400;
+    max-width: 60px;
+    padding: 0 14px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .trash {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 1279px) {
+  .section {
+    width: 100%;
+    max-width: 70px;
+    padding: 0 20px;
+  }
+}
