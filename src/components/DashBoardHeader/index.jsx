@@ -3,7 +3,7 @@ import Balance from '../Balance';
 import Report from '../Report';
 import Calendar from '../Calendar';
 import NavDashBoard from '../NavDashBoard';
-import { Mobile, Default } from '../../../services/media-query';
+import { Mobile, Default } from '../../services/media-query';
 import Styles from './index.module.css';
 // import Loader from '../Loader';
 

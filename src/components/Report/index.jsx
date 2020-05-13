@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MyLink from '../MyLink';
 import Styles from './index.module.css';
-import { Mobile, Default } from '../../../services/media-query';
+import { Mobile, Default } from '../../services/media-query';
 
 const index = ({ to }) => {
   return (

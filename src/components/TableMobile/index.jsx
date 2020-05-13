@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import routes from '../../../routes';
-import { Mobile, Default } from '../../../services/media-query';
+import routes from '../../routes';
+import { Mobile, Default } from '../../services/media-query';
 import test from './MOCK_DATA.json';
 import Styles from './index.module.css';
 import Trash from '../Trash';

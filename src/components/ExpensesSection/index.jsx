@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import routes from '../../routes';
 import { Mobile, Default } from '../../services/media-query';
-import Calendar from '../DashBoard/Calendar';
-import MoneyForm from '../DashBoard/MoneyForm';
-import Table from '../DashBoard/Table';
-import MonthStatistic from '../DashBoard/MonthStatistic';
+import Calendar from '../Calendar';
+import MoneyForm from '../MoneyForm';
+import Table from '../Table';
+import MonthStatistic from '../MonthStatistic';
 import Styles from './index.module.css';
 
 const data = [

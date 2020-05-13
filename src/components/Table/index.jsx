@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import test from './MOCK_DATA.json';
 import Styles from './index.module.css';
-import { Mobile, Default } from '../../../services/media-query';
+import { Mobile, Default } from '../../services/media-query';
 import Trash from '../Trash';
 import Cost from '../Cost';
 import Date from '../Date';

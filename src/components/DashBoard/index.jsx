@@ -8,9 +8,9 @@ import Background from '../Background';
 import Container from '../Container';
 import Wrapper from '../Wrapper';
 import DecorationFirst from '../Decoration/First';
-import DashBoardHeader from './DashBoardHeader';
-import TableMobile from './TableMobile';
-import Table from './Table';
+import DashBoardHeader from '../DashBoardHeader';
+import TableMobile from '../TableMobile';
+import Table from '../Table';
 // import Loader from '../Loader';
 export default class index extends Component {
   state = {};
