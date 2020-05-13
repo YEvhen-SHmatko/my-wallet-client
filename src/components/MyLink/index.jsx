@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const index = ({ newStyles, children, to }) => (
-  <Link to="/" className={newStyles}>
+  <Link to={to} className={newStyles}>
     {children}
   </Link>
 );
 index.defaultProps = {
   children: '',
   newStyles: '',
-  to: '',
+  to: '/',
 };
 index.propTypes = {
   children: PropTypes.node,

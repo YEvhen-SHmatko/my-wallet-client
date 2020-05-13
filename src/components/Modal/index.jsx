@@ -5,7 +5,7 @@ import Header from '../Header';
 import Background from '../Background';
 import Container from '../Container';
 import MoneyForm from '../MoneyForm';
-import GoBack from '../goBack';
+import GoBack from '../GoBack';
 
 const index = ({ onClick }) => {
   return (

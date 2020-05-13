@@ -1,0 +1,45 @@
+.link {
+  width: 100%;
+  max-width: 200px;
+  /* height: 64px; */
+  display: flex;
+  align-items: center;
+  /* padding: 20px 20px 0; */
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #52555f;
+  font-weight: 400;
+  text-align: right;
+}
+.btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid transparent;
+  margin: 20px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: flex-start;
+  outline: none;
+}
+.goBack_icon {
+  width: 24px;
+  fill: #ff7d2f;
+}
+.text {
+  word-wrap: none;
+  margin-left: 1em;
+}
+@media (min-width: 767px) {
+  .link {
+    /* padding: 20px 0; */
+  }
+}
+
+@media (min-width: 1279px) {
+  .date {
+    width: 100%;
+    max-width: 130px;
+    /* padding: 0 20px; */
+  }
+}

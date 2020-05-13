@@ -10,7 +10,7 @@ import Wrapper from '../Wrapper';
 import DecorationFirst from '../Decoration/First';
 import DashBoardHeader from '../DashBoardHeader';
 import TableMobile from '../TableMobile';
-import Table from '../Table';
+// import Table from '../Table';
 // import Loader from '../Loader';
 export default class index extends Component {
   state = {};

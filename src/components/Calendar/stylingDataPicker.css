@@ -1,4 +1,5 @@
 .react-datepicker {
+  z-index: 9;
   font-family: 'Roboto', sans-serif;
   font-size: 0.72rem;
   color: #52555f;
