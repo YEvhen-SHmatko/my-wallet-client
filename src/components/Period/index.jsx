@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Styles from './index.module.css';
-import { Default } from '../../../services/media-query';
+import { Default } from '../../services/media-query';
 
 const IconArrow = ({ className }) => (
   <svg

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import routes from '../../routes';
-import { Mobile, Default } from '../../services/media-query';
+import { Default } from '../../services/media-query';
 import Calendar from '../Calendar';
 import MoneyForm from '../MoneyForm';
 import Table from '../Table';
@@ -66,9 +64,6 @@ export default class index extends Component {
   render() {
     return (
       <div className={Styles.section}>
-        <Mobile>
-          <Redirect to={routes.DashBoardPage.path} />
-        </Mobile>
         <Default>
           <div className={Styles.row}>
             <Calendar />

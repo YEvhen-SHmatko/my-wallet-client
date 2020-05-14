@@ -1,22 +1,35 @@
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 0;
 }
-::-webkit-scrollbar-thumb {
-  border-width: 0;
-  border-color: #777;
-  background-color: #aaa;
+@media (min-width: 767px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-width: 0;
+    border-color: #777;
+    background-color: #aaa;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    border-width: 0;
+    border-color: #555;
+    background-color: #ff8128;
+  }
+  ::-webkit-scrollbar-track {
+    transform: translateX(-6px);
+    border-width: 0;
+    background-color: #f4f6fb;
+  }
+  ::-webkit-scrollbar-track:hover ::-webkit-scrollbar-thumb {
+    border-width: 0;
+    background-color: #ff8128;
+  }
 }
-::-webkit-scrollbar-thumb:hover {
-  border-width: 0;
-  border-color: #555;
-  background-color: #ff8128;
-}
-::-webkit-scrollbar-track {
-  transform: translateX(-6px);
-  border-width: 0;
-  background-color: #f4f6fb;
-}
-::-webkit-scrollbar-track:hover ::-webkit-scrollbar-thumb {
-  border-width: 0;
-  background-color: #ff8128;
+
+@media (min-width: 1279px) {
+  .name {
+    width: 100%;
+    max-width: 270px;
+    padding: 0 20px;
+  }
 }
