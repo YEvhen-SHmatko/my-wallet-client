@@ -57,7 +57,7 @@ export default class index extends Component {
                     { name: 'bacon', cost: '1500' },
                     { name: 'tomato', cost: '500' },
                     { name: 'tomato', cost: '200' },
-                    { name: 'tomato', cost: '200' },
+                    // { name: 'tomato', cost: '200' },//11
                   ]}
                 />
               </div>
