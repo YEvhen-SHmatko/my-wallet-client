@@ -1,4 +1,4 @@
-.container {
+.Mobile_section {
   z-index: 2;
   position: relative;
   left: 50%;
@@ -8,14 +8,13 @@
   flex-direction: column;
   align-items: center;
 }
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-    padding: 0 50px;
-  }
+.Tablet_section {
+  composes: Mobile_section;
+  max-width: 768px;
+  padding: 0 50px;
 }
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
+
+.Default_section {
+  composes: Tablet_section;
+  max-width: 1280px;
 }

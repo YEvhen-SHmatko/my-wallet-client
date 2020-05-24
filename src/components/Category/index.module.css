@@ -5,6 +5,7 @@
   text-overflow: ellipsis;
 }
 .Tablet_section {
+  composes: Mobile_section;
   width: 100%;
   font-size: 13px;
   font-weight: 400;
@@ -13,6 +14,7 @@
 }
 
 .Default_section {
+  composes: Tablet_section;
   max-width: 130px;
   padding: 0 20px;
 }
