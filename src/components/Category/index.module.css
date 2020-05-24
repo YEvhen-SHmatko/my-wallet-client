@@ -1,23 +1,20 @@
-.category {
+.Mobile_section {
   width: 60%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-@media (min-width: 767px) {
-  .category {
-    width: 100%;
-    font-size: 13px;
-    font-weight: 400;
-    max-width: 110px;
-    padding: 0 14px;
-  }
+.Tablet_section {
+  composes: Mobile_section;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  max-width: 110px;
+  padding: 0 14px;
 }
 
-@media (min-width: 1279px) {
-  .category {
-    width: 100%;
-    max-width: 130px;
-    padding: 0 20px;
-  }
+.Default_section {
+  composes: Tablet_section;
+  max-width: 130px;
+  padding: 0 20px;
 }

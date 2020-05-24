@@ -61,13 +61,4 @@ const index = () => (
     </div>
   </Wrapper>
 );
-
-// index.defaultProps = {
-//   expens: '18,000.00',
-//   income: '45,000.00',
-// };
-// index.propTypes = {
-//   data: PropTypes.string,
-//   income: PropTypes.string,
-// };
 export default index;
