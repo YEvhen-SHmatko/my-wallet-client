@@ -18,7 +18,6 @@ export default class index extends Component {
           Вы можете авторизироваться с помощью google account:
         </p>
         <GoogleAuth />
-
         <p className={Default ? Styles.Default_secondText : Styles.secondText}>
           Или зайти в приложение с помощью имейла и пароля, сперва
           зарегистрировавшись:
