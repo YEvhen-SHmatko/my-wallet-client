@@ -24,15 +24,9 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
-@media (min-width: 767px) {
-  .section {
-    max-width: 130px;
-    height: 40px;
-    align-items: center;
-  }
-}
-
-@media (min-width: 1279px) {
-  .section {
-  }
+.Default_section {
+  composes: section;
+  max-width: 130px;
+  height: 40px;
+  align-items: center;
 }

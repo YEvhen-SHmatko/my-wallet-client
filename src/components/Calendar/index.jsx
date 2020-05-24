@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ru from 'date-fns/locale/ru';
+import { useMediaQuery } from 'react-responsive';
+import { isNotMobile } from '../../services/mediaQuery';
 import Styles from './index.module.css';
 import './stylingDataPicker.css';
 
@@ -19,9 +21,10 @@ class index extends Component {
   };
 
   render() {
+    const IsDefault = isNotMobile(useMediaQuery);
     const { startDate } = this.state;
     return (
-      <div className={Styles.section}>
+      <div className={IsDefault ? Styles.Default_section : Styles.section}>
         <div className={Styles.icon} />
         <DatePicker
           locale="ru"

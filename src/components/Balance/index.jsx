@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
-import Styles from './index.module.css';
 import { isNotMobile } from '../../services/mediaQuery';
+import Styles from './index.module.css';
 
 const index = ({ value, onChange }) => {
   const IsDefault = isNotMobile(useMediaQuery);
