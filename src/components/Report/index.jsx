@@ -7,9 +7,9 @@ import Header from '../Header';
 import Background from '../Background';
 import Container from '../Container';
 import DecorationFirst from '../Decoration/First';
-import CategoryList from './CategoryList';
-import MoneyList from './MoneyList';
-import Period from './Period';
+import CategoryList from '../CategoryList';
+import MoneyList from '../MoneyList';
+import Period from '../Period';
 import BalanceReport from '../BalanceReport';
 import GoBack from '../GoBack';
 import MyChart from '../MyChart';
@@ -57,6 +57,7 @@ export default class index extends Component {
                     { name: 'bacon', cost: '1500' },
                     { name: 'tomato', cost: '500' },
                     { name: 'tomato', cost: '200' },
+                    // { name: 'tomato', cost: '200' },//11
                   ]}
                 />
               </div>

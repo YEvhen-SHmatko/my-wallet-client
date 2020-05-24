@@ -1,7 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import Wrapper from '../../Wrapper';
-import CategoryIcon from './CategoryIcon';
+import Wrapper from '../Wrapper';
+import CategoryIcon from '../CategoryIcon';
 import Styles from './index.module.css';
 
 const index = () => (

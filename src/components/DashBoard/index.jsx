@@ -24,6 +24,7 @@ export default class index extends Component {
           <Container>
             <DashBoardHeader />
             <Mobile>
+              <Redirect to={routes.DashBoardPage.path} />
               <TableMobile />
             </Mobile>
             <Default>

@@ -9,7 +9,11 @@ const index = ({ data }) => (
       <ExpensesChartBySpecificCategory data={data} isMobile currency="грн" />
     </Mobile>
     <Default>
-      <ExpensesChartBySpecificCategory data={data} currency="грн" />
+      {data.length > 10 ? (
+        <ExpensesChartBySpecificCategory data={data} isMobile currency="грн" />
+      ) : (
+        <ExpensesChartBySpecificCategory data={data} currency="грн" />
+      )}
     </Default>
   </div>
 );

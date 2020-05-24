@@ -23,20 +23,24 @@
   padding-right: 30px;
   margin-right: 0px;
 }
-@media (min-width: 767px) {
-  .form {
-    width: 420px;
-    padding: 50px 70px;
-  }
-  .text {
-    font-size: 14px;
-    text-align: start;
-  }
-  .firstText {
-    width: 100%;
-  }
-  .secondText {
-    padding-right: 0px;
-    margin-right: -20px;
-  }
+.Default_form {
+  composes: form;
+  width: 420px;
+  padding: 50px 70px;
+}
+.Default_text {
+  composes: text;
+  font-size: 14px;
+  text-align: start;
+}
+.Default_firstText {
+  composes: firstText;
+  composes: Default_text;
+  width: 100%;
+}
+.Default_secondText {
+  composes: secondText;
+  composes: Default_text;
+  padding-right: 0px;
+  margin-right: -20px;
 }

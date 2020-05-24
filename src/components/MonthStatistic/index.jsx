@@ -20,7 +20,7 @@ const index = ({ data }) => {
 };
 
 index.propTypes = {
-  data: PropTypes.shape(
+  data: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.oneOfType(PropTypes.string, PropTypes.number),
       month: PropTypes.string,
