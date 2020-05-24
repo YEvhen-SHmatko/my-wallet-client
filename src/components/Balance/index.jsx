@@ -1,18 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useMediaQuery } from 'react-responsive';
 import Styles from './index.module.css';
+import { isNotMobile } from '../../services/mediaQuery';
 
 const index = ({ value, onChange }) => {
+  const IsDefault = isNotMobile(useMediaQuery);
   return (
-    <div className={Styles.section}>
-      <div className={Styles.title}>Баланс:</div>
+    <div className={IsDefault ? Styles.Default_section : Styles.section}>
+      <div className={IsDefault ? Styles.Default_title : Styles.title}>
+        Баланс:
+      </div>
       <div className={Styles.form}>
         <input
-          className={Styles.input}
+          className={IsDefault ? Styles.Default_input : Styles.input}
           type="text"
           defaultValue={`${value}.00 UAN`}
         />
-        <button className={Styles.btn} type="button">
+        <button
+          className={IsDefault ? Styles.Default_btn : Styles.btn}
+          type="button"
+        >
           Подтвердить
         </button>
       </div>

@@ -42,26 +42,28 @@
 .form {
   display: flex;
 }
-@media (min-width: 767px) {
-  .section {
-    display: flex;
-    flex-direction: row;
-  }
-  .title {
-    margin: 6px;
-    padding-bottom: 0;
-  }
-  .bord {
-    margin: 6px;
-  }
-  .input {
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-  }
-  .btn {
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-  }
+.Default_section {
+  composes: section;
+  display: flex;
+  flex-direction: row;
 }
-@media (min-width: 1279px) {
+.Default_title {
+  composes: title;
+  margin: 6px;
+  padding-bottom: 0;
+}
+.Default_bord {
+  margin: 6px;
+}
+.Default_input {
+  composes: input;
+  composes: Default_bord;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.Default_btn {
+  composes: btn;
+  composes: Default_bord;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
