@@ -1,15 +1,21 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import Styles from './index.module.css';
-import { Mobile } from '../../services/media-query';
+import { isMobile, isTablet } from '../../services/mediaQuery';
 
-function fn(cb) {
-  return cb({
-    query: '(min-device-width: 1224px)',
-  });
-}
 const index = () => {
-  console.log(fn(useMediaQuery));
-  return <section className={Styles.section} />;
+  const IsMobile = isMobile(useMediaQuery);
+  const IsTablet = isTablet(useMediaQuery);
+  return (
+    <section
+      className={
+        IsMobile
+          ? Styles.Mobile_section
+          : IsTablet
+          ? Styles.Tablet_section
+          : Styles.Desctop_section
+      }
+    />
+  );
 };
 export default index;

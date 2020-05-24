@@ -26,6 +26,7 @@
     "jest": true
   },
   "rules": {
+    "no-nested-ternary": 0,
     "no-console": 1,
     "linebreak-style": ["error", "unix"],
     "react/jsx-filename-extension": [
