@@ -1,11 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useMediaQuery } from 'react-responsive';
+import { isMobile, isTablet } from '../../services/mediaQuery';
 import Styles from './index.module.css';
 
 const index = ({ data }) => {
+  const IsMobile = isMobile(useMediaQuery);
+  const IsTablet = isTablet(useMediaQuery);
   return (
     <>
-      <ul className={Styles.list}>
+      <ul
+        className={
+          IsMobile
+            ? Styles.Mobile_list
+            : IsTablet
+            ? Styles.Tablet_list
+            : Styles.Desktop_list
+        }
+      >
         <li className={Styles.item}>сводка</li>
         {data &&
           data.map(item => (
