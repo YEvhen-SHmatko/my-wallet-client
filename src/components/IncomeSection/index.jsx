@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Default } from '../../services/mediaQuery';
+import { useMediaQuery } from 'react-responsive';
+import { isMobile, isTablet, Default } from '../../services/mediaQuery';
 import Calendar from '../Calendar';
 import MoneyForm from '../MoneyForm';
 import Table from '../Table';
@@ -58,23 +59,29 @@ const data = [
     cost: '$148.12',
   },
 ];
-export default class index extends Component {
-  state = {};
-
-  render() {
-    return (
-      <div className={Styles.section}>
-        <Default>
-          <div className={Styles.row}>
-            <Calendar />
-            <MoneyForm />
-          </div>
-          <div className={Styles.main}>
-            <Table />
-            <MonthStatistic data={data} />
-          </div>
-        </Default>
-      </div>
-    );
-  }
-}
+const IncomeSection = () => {
+  const IsMobile = isMobile(useMediaQuery);
+  const IsTablet = isTablet(useMediaQuery);
+  return (
+    <div className={Styles.section}>
+      <Default>
+        <div
+          className={
+            IsMobile
+              ? Styles.Mobile_row
+              : IsTablet
+              ? Styles.Tablet_row
+              : Styles.Desktop_row
+          }
+        >
+          <MoneyForm />
+        </div>
+        <div className={Styles.main}>
+          <Table />
+          <MonthStatistic data={data} />
+        </div>
+      </Default>
+    </div>
+  );
+};
+export default IncomeSection;
