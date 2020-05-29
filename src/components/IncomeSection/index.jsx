@@ -74,6 +74,7 @@ const IncomeSection = () => {
               : Styles.Desktop_row
           }
         >
+          <Calendar />
           <MoneyForm />
         </div>
         <div className={Styles.main}>

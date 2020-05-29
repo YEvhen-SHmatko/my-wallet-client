@@ -14,13 +14,18 @@ import Modal from '../Modal';
 
 const TableMobile = () => {
   const [isModal, setIsModal] = useState(false);
+  const [isExpenses, setIsExpenses] = useState(false);
 
-  const openModal = () => {
+  const openModal = e => {
+    if (e.target.textContent === 'Pасход') {
+      setIsExpenses(true);
+    }
     setIsModal(true);
   };
 
   const closeModal = () => {
     setIsModal(false);
+    setIsExpenses(false);
   };
 
   const height =
@@ -36,7 +41,7 @@ const TableMobile = () => {
               left: `-${(window.innerWidth - 320) / 2}px`,
             }}
           >
-            <Modal onClick={closeModal} />
+            <Modal onClick={closeModal} isExpenses={isExpenses} />
           </div>
         ) : (
           <>

@@ -20,11 +20,15 @@ const DashBoard = () => {
         <Container>
           <DashBoardHeader />
           <Mobile>
-            <Redirect to={routes.DashBoardPage.path} />
+            <Suspense fallback="Loader">
+              <Redirect to={routes.DashBoardPage.path} />
+            </Suspense>
             <TableMobile />
           </Mobile>
           <Default>
-            <Redirect to={routes.Expenses.path} />
+            <Suspense fallback="Loader">
+              <Redirect to={routes.Expenses.path} />
+            </Suspense>
             <Wrapper newStyles={Styles.mainBody}>
               <Suspense fallback="Loader">
                 <Switch>
