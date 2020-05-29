@@ -27,22 +27,26 @@
   align-items: center;
 }
 .Default_mainHeader {
+  composes: mainHeader;
   height: 190px;
   padding: 0;
   flex-direction: row;
 }
 .Default_start {
+  composes: start;
   width: 20%;
   height: 190px;
   justify-content: flex-start;
   align-items: flex-end;
 }
 .Default_center {
+  composes: center;
   width: 50%;
   justify-content: center;
   align-items: center;
 }
 .Default_end {
+  composes: end;
   width: 30%;
   justify-content: flex-end;
   align-items: center;

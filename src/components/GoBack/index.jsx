@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useMediaQuery } from 'react-responsive';
 import { Link } from 'react-router-dom';
+import { isMobile, isTablet, Tablet, Desktop } from '../../services/mediaQuery';
 import Styles from './index.module.css';
-import { Tablet, Desktop } from '../../services/mediaQuery';
 
 const Static = () => {
   return (
@@ -28,8 +29,19 @@ const Static = () => {
 };
 const index = ({ onClick, to }) => {
   if (to) {
+    const IsMobile = isMobile(useMediaQuery);
+    const IsTablet = isTablet(useMediaQuery);
     return (
-      <Link className={Styles.link} to={to}>
+      <Link
+        className={
+          IsMobile
+            ? Styles.Mobile_link
+            : IsTablet
+            ? Styles.Tablet_link
+            : Styles.Desktop_link
+        }
+        to={to}
+      >
         <Static />
       </Link>
     );

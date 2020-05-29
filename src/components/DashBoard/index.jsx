@@ -5,7 +5,7 @@ import routes from '../../routes';
 import Styles from './index.module.css';
 import Header from '../Header';
 import Background from '../Background';
-import Container from '../Container';
+import Container from '../Container/index';
 import Wrapper from '../Wrapper';
 import DecorationFirst from '../Decoration/First';
 import DashBoardHeader from '../DashBoardHeader';

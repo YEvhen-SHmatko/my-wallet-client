@@ -1,10 +1,21 @@
 .Mobile_section {
-  width: 100%;
   font-size: 13px;
   font-weight: 400;
+}
+.Tablet_section {
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  max-width: 60px;
+  padding: 0 14px;
+}
+
+.Desktop_section {
+  composes: Mobile_section;
+  width: 100%;
+  max-width: 70px;
+  padding: 0 20px;
 }
 .Mobile_trash {
   width: 34px;
@@ -21,24 +32,11 @@
   background-size: 14px;
   transition: all, 0.5s;
 }
-.Mobile_trash:hover {
-  border: 1px solid #f4f6fb;
-  background-color: #f4f6fb;
-}
-
-.Tablet_section {
-  composes: Mobile_section;
-  max-width: 60px;
-  padding: 0 14px;
-}
 .Default_trash {
   composes: Mobile_trash;
   margin-left: 0;
 }
-
-.Desktop_section {
-  composes: Tablet_section;
-  width: 100%;
-  max-width: 70px;
-  padding: 0 20px;
+.Mobile_trash:hover {
+  border: 1px solid #f4f6fb;
+  background-color: #f4f6fb;
 }

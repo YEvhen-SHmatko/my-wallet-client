@@ -13,7 +13,7 @@
   padding: 0 14px;
 }
 
-.Default_section {
+.Desktop_section {
   composes: Tablet_section;
   max-width: 130px;
   padding: 0 20px;

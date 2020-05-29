@@ -10,7 +10,7 @@
 }
 
 .Desktop_list {
-  composes: Desktop_list;
+  composes: Tablet_list;
   margin: 0 auto;
 }
 .item {
