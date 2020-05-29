@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 import { isMobile, isTablet } from '../../services/mediaQuery';
 import Styles from './index.module.css';
 
-const Container = ({ children }) => {
+const MyDate = ({ date }) => {
   const IsMobile = isMobile(useMediaQuery);
   const IsTablet = isTablet(useMediaQuery);
   return (
@@ -17,12 +17,12 @@ const Container = ({ children }) => {
           : Styles.Desktop_section
       }
     >
-      {children}
+      {date}
     </div>
   );
 };
 
-Container.propTypes = {
-  children: PropTypes.node.isRequired,
+MyDate.propTypes = {
+  date: PropTypes.string.isRequired,
 };
-export default Container;
+export default MyDate;

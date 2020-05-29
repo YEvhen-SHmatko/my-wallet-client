@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
-import { isNotMobile } from '../../services/mediaQuery';
+import { isDefault } from '../../services/mediaQuery';
 import Styles from './index.module.css';
 
-const index = ({ value, onChange }) => {
-  const IsDefault = isNotMobile(useMediaQuery);
+const Balance = ({ value, onChange }) => {
+  const IsDefault = isDefault(useMediaQuery);
   return (
     <div className={IsDefault ? Styles.Default_section : Styles.section}>
       <div className={IsDefault ? Styles.Default_title : Styles.title}>
@@ -27,12 +27,12 @@ const index = ({ value, onChange }) => {
     </div>
   );
 };
-index.defaultProps = {
+Balance.defaultProps = {
   value: 0,
   onChange: e => console.log(e.target.value),
 };
-index.propTypes = {
+Balance.propTypes = {
   value: PropTypes.number,
   onChange: PropTypes.func,
 };
-export default index;
+export default Balance;

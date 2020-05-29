@@ -14,7 +14,7 @@
   composes: Mobile_section;
   height: 510px;
 }
-.Desctop_section {
+.Desktop_section {
   composes: Tablet_section;
   flex-direction: row;
 }

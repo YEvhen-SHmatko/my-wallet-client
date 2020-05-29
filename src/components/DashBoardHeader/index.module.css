@@ -26,28 +26,24 @@
   justify-content: flex-end;
   align-items: center;
 }
-@media (min-width: 767px) {
-  .mainHeader {
-    height: 190px;
-    padding: 0;
-    flex-direction: row;
-  }
-  .start {
-    width: 20%;
-    height: 190px;
-    justify-content: flex-start;
-    align-items: flex-end;
-  }
-  .center {
-    width: 50%;
-    justify-content: center;
-    align-items: center;
-  }
-  .end {
-    width: 30%;
-    justify-content: flex-end;
-    align-items: center;
-  }
+.Default_mainHeader {
+  height: 190px;
+  padding: 0;
+  flex-direction: row;
 }
-@media (min-width: 1279px) {
+.Default_start {
+  width: 20%;
+  height: 190px;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+.Default_center {
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+.Default_end {
+  width: 30%;
+  justify-content: flex-end;
+  align-items: center;
 }

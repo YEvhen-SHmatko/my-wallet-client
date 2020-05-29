@@ -37,21 +37,18 @@
 .btn {
   width: 100%;
 }
-/* //-----// Mobile //-----// */
-.M_first {
+.first {
   width: 50%;
 }
-.M_info {
+.info {
   composes: row;
   margin-top: 8px;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
 }
-.M_second {
+.second {
   composes: row;
   width: 50%;
   justify-content: flex-end;
 }
-
-/* //-----// Tablet //-----// */

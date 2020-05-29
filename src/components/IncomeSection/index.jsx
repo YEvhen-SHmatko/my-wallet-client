@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Default } from '../../services/media-query';
+import { Default } from '../../services/mediaQuery';
 import Calendar from '../Calendar';
 import MoneyForm from '../MoneyForm';
 import Table from '../Table';

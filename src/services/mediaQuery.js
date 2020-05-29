@@ -7,7 +7,7 @@ const logic = (children, device) => {
 export const isDesktop = cb => cb({ minWidth: 1280 });
 export const isTablet = cb => cb({ minWidth: 768, maxWidth: 1279 });
 export const isMobile = cb => cb({ maxWidth: 767 });
-export const isNotMobile = cb => cb({ minWidth: 768 });
+export const isDefault = cb => cb({ minWidth: 768 });
 
 export const Desktop = ({ children }) => {
   return logic(children, isDesktop(useMediaQuery));
@@ -19,5 +19,5 @@ export const Mobile = ({ children }) => {
   return logic(children, isMobile(useMediaQuery));
 };
 export const Default = ({ children }) => {
-  return logic(children, isNotMobile(useMediaQuery));
+  return logic(children, isDefault(useMediaQuery));
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ExpensesChartBySpecificCategory from './ExpensesChartBySpecificCategory';
-import { Mobile, Default } from '../../services/media-query';
+import { Mobile, Default } from '../../services/mediaQuery';
 
 const index = ({ data }) => (
   <div>

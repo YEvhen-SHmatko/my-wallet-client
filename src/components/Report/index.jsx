@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Mobile, Default } from '../../services/media-query';
+import { useMediaQuery } from 'react-responsive';
+import {
+  Mobile,
+  Default,
+  isMobile,
+  isTablet,
+  isDefault,
+} from '../../services/mediaQuery';
 import routes from '../../routes';
 import Styles from './index.module.css';
 import Header from '../Header';
@@ -14,60 +20,76 @@ import BalanceReport from '../BalanceReport';
 import GoBack from '../GoBack';
 import MyChart from '../MyChart';
 
-export default class index extends Component {
-  state = {};
-
-  render() {
-    return (
-      <>
-        <Header />
-        <main className={Styles.main}>
-          <Background />
-          <Container>
-            <div className={Styles.container}>
-              <div className={Styles.head}>
-                <GoBack to={routes.DashBoardPage.path} />
-                <Mobile>
-                  <div className={Styles.Period}>
-                    <Period />
-                  </div>
-                  <BalanceReport date="13.05.2020" value={55000} />
-                </Mobile>
-                <Default>
-                  <BalanceReport date="13.05.2020" value={55000} />
+const Report = () => {
+  const IsMobile = isMobile(useMediaQuery);
+  const IsTablet = isTablet(useMediaQuery);
+  const IsDefault = isDefault(useMediaQuery);
+  return (
+    <>
+      <Header />
+      <main className={Styles.main}>
+        <Background />
+        <Container>
+          <div
+            className={
+              IsMobile
+                ? Styles.Mobile_container
+                : IsTablet
+                ? Styles.Tablet_container
+                : Styles.Desktop_container
+            }
+          >
+            <div
+              className={IsDefault ? Styles.Default_head : Styles.Mobile_head}
+            >
+              <GoBack to={routes.DashBoardPage.path} />
+              <Mobile>
+                <div className={Styles.Period}>
                   <Period />
-                </Default>
-              </div>
-              <div className={Styles.info}>
-                <MoneyList />
-              </div>
-              <div className={Styles.info}>
-                <CategoryList />
-              </div>
-              <div className={Styles.info}>
-                <MyChart
-                  data={[
-                    { name: 'chery', cost: '2500' },
-                    { name: 'bacon', cost: '4500' },
-                    { name: 'tomato', cost: '500' },
-                    { name: 'chery', cost: '5500' },
-                    { name: 'bacon', cost: '4100' },
-                    { name: 'tomato', cost: '300' },
-                    { name: 'chery', cost: '2000' },
-                    { name: 'bacon', cost: '1500' },
-                    { name: 'tomato', cost: '500' },
-                    { name: 'tomato', cost: '200' },
-                    // { name: 'tomato', cost: '200' },//11
-                  ]}
-                />
-              </div>
+                </div>
+                <BalanceReport date="13.05.2020" value={55000} />
+              </Mobile>
+              <Default>
+                <BalanceReport date="13.05.2020" value={55000} />
+                <Period />
+              </Default>
             </div>
-          </Container>
-        </main>
-        <footer className={Styles.footer}>
-          <DecorationFirst />
-        </footer>
-      </>
-    );
-  }
-}
+            <div
+              className={IsDefault ? Styles.Default_info : Styles.Mobile_info}
+            >
+              <MoneyList />
+            </div>
+            <div
+              className={IsDefault ? Styles.Default_info : Styles.Mobile_info}
+            >
+              <CategoryList />
+            </div>
+            <div
+              className={IsDefault ? Styles.Default_info : Styles.Mobile_info}
+            >
+              <MyChart
+                data={[
+                  { name: 'chery', cost: '2500' },
+                  { name: 'bacon', cost: '4500' },
+                  { name: 'tomato', cost: '500' },
+                  { name: 'chery', cost: '5500' },
+                  { name: 'bacon', cost: '4100' },
+                  { name: 'tomato', cost: '300' },
+                  { name: 'chery', cost: '2000' },
+                  { name: 'bacon', cost: '1500' },
+                  { name: 'tomato', cost: '500' },
+                  { name: 'tomato', cost: '200' },
+                  // { name: 'tomato', cost: '200' },//11
+                ]}
+              />
+            </div>
+          </div>
+        </Container>
+      </main>
+      <footer className={Styles.footer}>
+        <DecorationFirst />
+      </footer>
+    </>
+  );
+};
+export default Report;

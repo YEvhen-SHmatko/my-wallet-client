@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Styles from './index.module.css';
 import routes from '../../routes';
 
-export default function index() {
+const NavDashBoard = () => {
   return (
     <section className={Styles.section}>
       <NavLink
@@ -22,4 +22,6 @@ export default function index() {
       </NavLink>
     </section>
   );
-}
+};
+
+export default NavDashBoard;
