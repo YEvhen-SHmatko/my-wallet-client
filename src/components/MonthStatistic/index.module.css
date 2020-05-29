@@ -1,7 +1,17 @@
-.list {
+.Mobile_list {
   margin: 0 auto;
   width: 230px;
   list-style: none;
+}
+
+.Tablet_list {
+  composes: Mobile_list;
+  margin: 40px auto auto 0;
+}
+
+.Desktop_list {
+  composes: Desktop_list;
+  margin: 0 auto;
 }
 .item {
   background: #f4f6fb;
@@ -39,15 +49,4 @@
   padding-right: 30px;
   display: flex;
   justify-content: flex-end;
-}
-@media (min-width: 767px) {
-  .list {
-    margin: 40px auto auto 0;
-  }
-}
-
-@media (min-width: 1279px) {
-  .list {
-    margin: 0 auto;
-  }
 }
