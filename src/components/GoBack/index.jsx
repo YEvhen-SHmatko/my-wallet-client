@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Styles from './index.module.css';
-import { Default } from '../../services/media-query';
+import { Default } from '../../services/mediaQuery';
 
 const Static = () => {
   return (

@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
 import Styles from './index.module.css';
-import { isNotMobile } from '../../services/mediaQuery';
+import { isDefault } from '../../services/mediaQuery';
 
-const index = ({ value, date }) => {
-  const IsDefault = isNotMobile(useMediaQuery);
+const BalanceReport = ({ value, date }) => {
+  const IsDefault = isDefault(useMediaQuery);
   return (
     <div className={IsDefault ? Styles.Default_section : Styles.section}>
       <div
@@ -17,12 +17,12 @@ const index = ({ value, date }) => {
     </div>
   );
 };
-index.defaultProps = {
+BalanceReport.defaultProps = {
   value: 0,
   date: '17.05.1991',
 };
-index.propTypes = {
+BalanceReport.propTypes = {
   value: PropTypes.number,
   date: PropTypes.string,
 };
-export default index;
+export default BalanceReport;

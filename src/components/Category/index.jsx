@@ -14,7 +14,7 @@ const index = ({ category }) => {
           ? Styles.Mobile_section
           : IsTablet
           ? Styles.Tablet_section
-          : Styles.Desctop_section
+          : Styles.Desktop_section
       }
     >
       {category}

@@ -1,24 +1,20 @@
-.cost {
+.Mobile_section {
   font-size: 12px;
   font-weight: 700;
   display: flex;
   align-items: center;
 }
-@media (min-width: 767px) {
-  .cost {
-    width: 100%;
-    font-size: 13px;
-    font-weight: 400;
-    max-width: 100px;
-    padding: 0 14px;
-    justify-content: flex-end;
-  }
+.Tablet_section {
+  composes: Mobile_section;
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  max-width: 100px;
+  padding: 0 14px;
+  justify-content: flex-end;
 }
-
-@media (min-width: 1279px) {
-  .cost {
-    width: 100%;
-    max-width: 120px;
-    padding: 0 20px;
-  }
+.Desktop_section {
+  composes: Tablet_section;
+  max-width: 120px;
+  padding: 0 20px;
 }

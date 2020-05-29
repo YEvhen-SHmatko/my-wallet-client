@@ -1,10 +1,16 @@
-.section {
+.Mobile_section {
   width: 200px;
   height: 70px;
   background-color: #f4f6fb;
 }
+.Default_section {
+  composes: Mobile_section;
+  width: 100%;
+  max-width: 420px;
+  height: 130px;
+}
 
-.title {
+.Mobile_title {
   margin: 0;
   font-size: 50px;
   letter-spacing: 2px;
@@ -37,7 +43,7 @@
   position: absolute;
 }
 
-.subtitle {
+.Mobile_subtitle {
   margin: 0;
   padding-top: 0.4em;
   padding-left: 1.1em;
@@ -51,34 +57,28 @@
   font-weight: 700;
 }
 
-@media (min-width: 767px) {
-  .section {
-    width: 100%;
-    max-width: 420px;
-    height: 130px;
-  }
-
-  .title {
-    font-size: 75px;
-    letter-spacing: 2px;
-  }
-
-  .subtitle {
-    padding-top: 0.8em;
-    padding-left: 2.2em;
-    font-size: 15px;
-    letter-spacing: 3px;
-    line-height: 23px;
-  }
+.Tablet_title {
+  composes: Mobile_title;
+  font-size: 75px;
+  letter-spacing: 2px;
 }
-@media (min-width: 1279px) {
-  .title {
-    font-size: 102px;
-    letter-spacing: 3px;
-  }
 
-  .subtitle {
-    padding-left: 4.4em;
-    padding-left: 60px;
-  }
+.Tablet_subtitle {
+  composes: Mobile_subtitle;
+  padding-top: 0.8em;
+  padding-left: 2.2em;
+  font-size: 15px;
+  letter-spacing: 3px;
+  line-height: 23px;
+}
+.Desktop_title {
+  composes: Tablet_title;
+  font-size: 102px;
+  letter-spacing: 3px;
+}
+
+.Desktop_subtitle {
+  composes: Tablet_subtitle;
+  padding-left: 4.4em;
+  padding-left: 60px;
 }

@@ -2,9 +2,9 @@ import React from 'react';
 import MyLink from '../MyLink';
 import Styles from './index.module.css';
 import routes from '../../routes';
-import { Mobile, Default } from '../../services/media-query';
+import { Mobile, Default } from '../../services/mediaQuery';
 
-const index = () => {
+const ReportLink = () => {
   return (
     <>
       <Mobile>
@@ -20,4 +20,4 @@ const index = () => {
     </>
   );
 };
-export default index;
+export default ReportLink;

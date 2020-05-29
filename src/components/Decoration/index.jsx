@@ -1,6 +1,6 @@
 import React from 'react';
 import Styles from './index.module.css';
-import { Desktop, Tablet, Mobile } from '../../services/media-query';
+import { Desktop, Tablet, Mobile } from '../../services/mediaQuery';
 import First from './First';
 import Second from './Second';
 

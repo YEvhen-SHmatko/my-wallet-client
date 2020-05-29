@@ -4,7 +4,7 @@ import Wrapper from '../Wrapper';
 import CategoryIcon from '../CategoryIcon';
 import Styles from './index.module.css';
 
-const index = () => (
+const CategoryList = () => (
   <Wrapper>
     <div className={Styles.section}>
       <CategoryIcon
@@ -61,4 +61,4 @@ const index = () => (
     </div>
   </Wrapper>
 );
-export default index;
+export default CategoryList;
