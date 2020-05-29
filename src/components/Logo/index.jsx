@@ -1,10 +1,11 @@
 import React from 'react';
 import Styles from './Logo.module.css';
 
-export default function Loader() {
+const Logo = () => {
   return (
     <>
       <div className={Styles.logo} />
     </>
   );
-}
+};
+export default Logo;
