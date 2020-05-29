@@ -1,6 +1,5 @@
-.link {
-  width: 100%;
-  max-width: 200px;
+.Mobile_link {
+  width: 200px;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -10,8 +9,16 @@
   font-weight: 400;
   text-align: right;
 }
+.Tablet_link {
+  composes: Mobile_link;
+  width: 140px;
+}
+.Desktop_link {
+  composes: Tablet_link;
+  width: 200px;
+}
 .btn {
-  width: 100%;
+  width: 24px;
   background: transparent;
   border: 1px solid transparent;
   margin: 20px;

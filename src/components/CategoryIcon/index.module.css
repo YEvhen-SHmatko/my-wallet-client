@@ -13,6 +13,8 @@
   font-family: 'Roboto';
   font-weight: 400;
   text-align: center;
+  /* text-transform: uppercase; */
+  text-transform: lowercase;
 }
 .cost {
   text-align: center;
