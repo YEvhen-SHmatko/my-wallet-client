@@ -1,4 +1,12 @@
-.trash {
+.Mobile_section {
+  width: 100%;
+  font-size: 13px;
+  font-weight: 400;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.Mobile_trash {
   width: 34px;
   height: 34px;
   margin-left: 20px;
@@ -13,30 +21,24 @@
   background-size: 14px;
   transition: all, 0.5s;
 }
-.trash:hover {
+.Mobile_trash:hover {
   border: 1px solid #f4f6fb;
   background-color: #f4f6fb;
 }
-@media (min-width: 767px) {
-  .section {
-    width: 100%;
-    font-size: 13px;
-    font-weight: 400;
-    max-width: 60px;
-    padding: 0 14px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  .trash {
-    margin-left: 0;
-  }
+
+.Tablet_section {
+  composes: Mobile_section;
+  max-width: 60px;
+  padding: 0 14px;
+}
+.Default_trash {
+  composes: Mobile_trash;
+  margin-left: 0;
 }
 
-@media (min-width: 1279px) {
-  .section {
-    width: 100%;
-    max-width: 70px;
-    padding: 0 20px;
-  }
+.Desktop_section {
+  composes: Tablet_section;
+  width: 100%;
+  max-width: 70px;
+  padding: 0 20px;
 }
