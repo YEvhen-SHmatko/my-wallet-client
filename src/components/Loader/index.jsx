@@ -1,9 +1,10 @@
-import React from "react";
-import Styles from "./Loader.module.css";
-export default function Loader() {
+import React from 'react';
+import Styles from './Loader.module.css';
+
+const Loader = () => {
   return (
     <section className={Styles.container}>
-      <div className={Styles.loader__spin}></div>
+      <div className={Styles.loader__spin} />
       <svg
         className={Styles.loader}
         version="1.1"
@@ -86,4 +87,5 @@ export default function Loader() {
       </svg>
     </section>
   );
-}
+};
+export default Loader;
