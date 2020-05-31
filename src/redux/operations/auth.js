@@ -2,9 +2,8 @@ import axios from 'axios';
 import * as actions from '../actions';
 import * as types from '../types';
 import * as API from '../../services/API';
-import { getLS, setLS, removeLS } from '../../services/localStorage';
-// axios.defaults.baseURL = 'https://api.example.com';
-// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+import INITIAL_STATE from '../INITIAL_STATE';
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export const authLogin = data => {
@@ -14,7 +13,7 @@ export const authLogin = data => {
       .post(API.PostAuthLogin, JSON.stringify(data))
       .then(res => {
         dispatch(actions.Success(types.AUTH_LOGIN_SUCCESS, res.data));
-        setLS('session', res.data.user.token);
+        axios.defaults.headers.common.Authorization = `Bearer ${res.data.user.token}`;
       })
       .catch(error =>
         dispatch(
@@ -31,7 +30,7 @@ export const authRegister = data => {
       .post(API.PostAuthRegister, JSON.stringify(data))
       .then(res => {
         dispatch(actions.Success(types.AUTH_REGISTER_SUCCESS, res.data));
-        setLS('session', res.data.user.token);
+        axios.defaults.headers.common.Authorization = `Bearer ${res.data.user.token}`;
       })
       .catch(error =>
         dispatch(
@@ -42,18 +41,15 @@ export const authRegister = data => {
       );
   };
 };
+
 export const authLogout = data => {
   return dispatch => {
     dispatch(actions.Started(types.AUTH_LOGOUT_STARTED));
     axios
-      .post(
-        API.PostAuthLogout,
-        {},
-        { headers: { Authorization: `Bearer ${getLS('session')}` } },
-      )
+      .post(API.PostAuthLogout)
       .then(res => {
-        dispatch(actions.Success(types.AUTH_LOGOUT_SUCCESS, {}));
-        removeLS('session');
+        dispatch(actions.Success(types.AUTH_LOGOUT_SUCCESS, INITIAL_STATE));
+        axios.defaults.headers.common.Authorization = '';
       })
       .catch(error =>
         dispatch(
