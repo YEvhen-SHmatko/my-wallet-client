@@ -7,7 +7,7 @@ import Container from '../Container';
 import MoneyForm from '../MoneyForm';
 import GoBack from '../GoBack';
 
-const index = ({ onClick }) => {
+const Modal = ({ onClick, isExpenses }) => {
   return (
     <>
       <Header />
@@ -15,15 +15,19 @@ const index = ({ onClick }) => {
         <Background />
         <Container>
           <GoBack onClick={onClick} />
-          <MoneyForm />
+          <MoneyForm isExpenses={isExpenses} />
         </Container>
       </main>
     </>
   );
 };
 
-index.propTypes = {
+Modal.defaultProps = {
+  isExpenses: false,
+};
+Modal.propTypes = {
   onClick: PropTypes.func.isRequired,
+  isExpenses: PropTypes.bool,
 };
 
-export default index;
+export default Modal;
