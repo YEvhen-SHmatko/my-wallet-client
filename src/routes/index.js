@@ -1,9 +1,7 @@
 import React from 'react';
 
-const LoginRegisterPage = React.lazy(() =>
-  import(
-    '../pages/LoginRegisterPage' /* webpackChunkName: "LoginRegisterPage" */
-  ),
+const AUTH_PAGE = React.lazy(() =>
+  import('../pages/AUTH_PAGE' /* webpackChunkName: "AUTH_PAGE" */),
 );
 const DashBoardPage = React.lazy(() =>
   import('../pages/DashBoardPage' /* webpackChunkName: "DashBoardPage" */),
@@ -19,9 +17,15 @@ const ReportPage = React.lazy(() =>
 );
 const repositori = '';
 const routes = {
-  LoginRegisterPage: {
+  AUTH_PAGE: {
     path: `${repositori}/auth`,
-    component: LoginRegisterPage,
+    component: AUTH_PAGE,
+  },
+  AUTH_LOGIN: {
+    path: `${repositori}/auth/login`,
+  },
+  AUTH_REGISTER: {
+    path: `${repositori}/auth/register`,
   },
   Home: {
     path: `${repositori}/`,

@@ -11,8 +11,8 @@ function App() {
           <Redirect to={routes.DashBoardPage.path} />
         </Route>
         <Route
-          path={routes.LoginRegisterPage.path}
-          component={routes.LoginRegisterPage.component}
+          path={routes.AUTH_PAGE.path}
+          component={routes.AUTH_PAGE.component}
         />
         <Route
           path={routes.ReportPage.path}

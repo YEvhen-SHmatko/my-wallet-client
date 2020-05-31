@@ -1,15 +1,14 @@
 import React from 'react';
 import Styles from './index.module.css';
+import * as API from '../../services/API';
 
-export default function ButtonGoogle() {
+const GoogleAuth = () => {
   return (
-    <button type="button" className={Styles.button}>
-      <img
-        className={Styles.icon}
-        src="./images/google_PNG19635.png"
-        alt="google icon"
-      />
+    <a className={Styles.link} href={`${API.GetAuthByGoogle}`}>
+      <span className={Styles.icon} />
       Google
-    </button>
+    </a>
   );
-}
+};
+
+export default GoogleAuth;

@@ -23,6 +23,7 @@
   font-weight: 400;
   color: #52555f;
   line-height: 2.1;
+  outline: inherit;
 }
 
 .Input::placeholder {
