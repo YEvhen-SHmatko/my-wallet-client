@@ -54,7 +54,7 @@ const index = ({ onClick, to }) => {
 };
 index.defaultProps = {
   onClick: () => false,
-  to: false,
+  to: '',
 };
 index.propTypes = {
   onClick: PropTypes.func,

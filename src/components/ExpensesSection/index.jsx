@@ -75,7 +75,7 @@ const ExpensesSection = () => {
           }
         >
           <Calendar />
-          <MoneyForm />
+          <MoneyForm isExpenses />
         </div>
         <div className={Styles.main}>
           <Table />
