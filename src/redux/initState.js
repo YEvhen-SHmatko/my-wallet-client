@@ -9,6 +9,7 @@ const initState = {
     balance: 0,
     incomes: [],
     products: [],
+    costs: [],
   },
   init: false,
 };

@@ -2,19 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as income from '../../redux/operations/income';
+import * as cost from '../../redux/operations/cost';
 import Styles from './index.module.css';
 import Wrapper from '../Wrapper';
 
-const MoneyForm = ({ isExpenses, postIncome }) => {
+const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
   const [placeholder, setPlaceholder] = useState(
     'Здесь ты будешь вносить на что ты тратишь деньги',
   );
   const [text, setText] = useState('');
+  const [id, setID] = useState('');
   const [newValue, setNewValue] = useState('');
+  const [select, setSelect] = useState(false);
   const [currentValue, setCurrentValue] = useState(`${(+newValue).toFixed(2)}`);
+
   const handleTextChange = e => {
     setText(e.target.value);
+    if (!select) setSelect(true);
   };
+
   useEffect(() => {
     if (isExpenses) {
       setPlaceholder('Здесь ты будешь вносить на что ты тратишь деньги');
@@ -22,6 +28,7 @@ const MoneyForm = ({ isExpenses, postIncome }) => {
     }
     setPlaceholder('Введите сумму дохода');
   }, [isExpenses]);
+
   const handleClear = e => {
     if (isExpenses) {
       setCurrentValue(`${(0).toFixed(2)}`);
@@ -31,16 +38,24 @@ const MoneyForm = ({ isExpenses, postIncome }) => {
     setCurrentValue(`${(0).toFixed(2)}`);
   };
 
+  const inputProducts = arr => {
+    return arr.filter(item => item.name.includes(text));
+  };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (isExpenses) {
-      console.log('object');
+      if (id === '') return;
+      if (+currentValue === 0) return;
+      console.log(id, currentValue);
+      postCost(id, currentValue);
       handleClear();
       return;
     }
     postIncome(+newValue);
     handleClear();
   };
+
   const handleValueChange = e => {
     const { value } = e.target;
     if (!+value) return;
@@ -48,12 +63,23 @@ const MoneyForm = ({ isExpenses, postIncome }) => {
       setCurrentValue(value);
     }
   };
+
   const handleFocus = () => {
     setCurrentValue(newValue);
   };
+
   const handleBlur = () => {
     setNewValue(+currentValue);
     setCurrentValue(`${(+currentValue).toFixed(2)}`);
+  };
+
+  const textBlur = () => {
+    setTimeout(() => setSelect(false), 300);
+  };
+
+  const handleSelect = e => {
+    setText(e.currentTarget.name);
+    setID(e.currentTarget.id);
   };
   return (
     <div className={Styles.section}>
@@ -67,18 +93,29 @@ const MoneyForm = ({ isExpenses, postIncome }) => {
               name="text"
               value={text}
               required
+              onBlur={textBlur}
               onChange={handleTextChange}
               placeholder={placeholder}
               rows={window.innerWidth < 768 ? 2 : 1}
             />
-            {!!text.length && isExpenses && (
+            {select && isExpenses && (
               <Wrapper className={Styles.text_select}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Nesciunt quos dolorem aspernatur facere reprehenderit? Ducimus
-                soluta, nesciunt iusto corporis pariatur dolores harum nam, et
-                mollitia natus sit eius fugit officiis exercitationem voluptas
-                iste unde, id quos incidunt eaque atque voluptatem. Laboriosam
-                veniam in iure voluptates nulla. Vitae dolor quo laboriosam.
+                <ul className={Styles.search_list}>
+                  {inputProducts(dataProducts).map(product => (
+                    <li className={Styles.search_item} key={product._id}>
+                      <button
+                        className={Styles.search_btn}
+                        type="button"
+                        name={product.name}
+                        id={product._id}
+                        onClick={handleSelect}
+                      >
+                        <span>{product.name}</span>
+                        <span>{product.category.name}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </Wrapper>
             )}
           </div>
@@ -114,9 +151,18 @@ const MoneyForm = ({ isExpenses, postIncome }) => {
 };
 MoneyForm.defaultProps = {
   isExpenses: false,
+  dataProducts: [],
 };
 MoneyForm.propTypes = {
   isExpenses: PropTypes.bool,
   postIncome: PropTypes.func.isRequired,
+  postCost: PropTypes.func.isRequired,
+  dataProducts: PropTypes.array,
 };
-export default connect(null, { postIncome: income.postIncome })(MoneyForm);
+const MSTP = store => ({
+  dataProducts: store.app.products,
+});
+export default connect(MSTP, {
+  postIncome: income.postIncome,
+  postCost: cost.postCost,
+})(MoneyForm);

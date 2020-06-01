@@ -29,7 +29,7 @@ const DashBoard = () => {
             <Suspense fallback="Loader">
               <Redirect to={routes.Expenses.path} />
             </Suspense>
-            <Wrapper newStyles={Styles.mainBody}>
+            <Wrapper className={Styles.mainBody}>
               <Suspense fallback="Loader">
                 <Switch>
                   <Route

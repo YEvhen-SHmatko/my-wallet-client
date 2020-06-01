@@ -3,74 +3,68 @@ import * as actions from '../actions';
 import * as types from '../types';
 import * as API from '../../services/API';
 
-export const getIncomes = () => {
+export const getCosts = () => {
   return dispatch => {
-    dispatch(actions.withOutPayload(types.GET_INCOME_STARTED));
+    dispatch(actions.withOutPayload(types.GET_COSTS_STARTED));
     axios
-      .get(API.Income)
+      .get(API.Costs)
       .then(res => {
-        dispatch(
-          actions.withPayload(types.GET_INCOME_SUCCESS, {
-            incomes: res.data.incomes,
-          }),
-        );
+        dispatch(actions.withPayload(types.GET_COSTS_SUCCESS, res.data.costs));
       })
       .catch(error =>
         dispatch(
-          actions.withPayload(types.GET_INCOME_FAILURE, {
+          actions.withPayload(types.GET_COSTS_FAILURE, {
             status: error.message,
           }),
         ),
       );
   };
 };
-export const postIncome = amount => {
+export const postCost = (productId, amount) => {
   return dispatch => {
-    dispatch(actions.withOutPayload(types.POST_INCOME_STARTED));
+    dispatch(actions.withOutPayload(types.POST_COSTS_STARTED));
     axios
       .post(
-        API.Income,
+        API.Costs,
         JSON.stringify({
-          amount,
           date: new Date(),
+          product: {
+            productId,
+            amount,
+            date: new Date(),
+          },
         }),
       )
       .then(res => {
-        dispatch(
-          actions.withPayload(types.POST_INCOME_SUCCESS, {
-            balance: res.data.balance,
-          }),
-        );
+        dispatch(actions.withPayload(types.POST_COSTS_SUCCESS, res.data.costs));
       })
       .catch(error =>
         dispatch(
-          actions.withPayload(types.POST_INCOME_FAILURE, {
+          actions.withPayload(types.POST_COSTS_FAILURE, {
             status: error.message,
           }),
         ),
       )
-      .finally(dispatch(getIncomes()));
+      .finally(dispatch(getCosts()));
   };
 };
-export const deleteIncome = id => {
+export const deleteCost = id => {
   return dispatch => {
-    dispatch(actions.withOutPayload(types.DELETE_INCOME_STARTED));
+    dispatch(actions.withOutPayload(types.DELETE_COSTS_STARTED));
     axios
       .delete(`${API.Income}/${id}`)
       .then(res => {
         dispatch(
-          actions.withPayload(types.DELETE_INCOME_SUCCESS, {
-            balance: res.data.balance,
-          }),
+          actions.withPayload(types.DELETE_COSTS_SUCCESS, res.data.balance),
         );
       })
       .catch(error =>
         dispatch(
-          actions.withPayload(types.DELETE_INCOME_FAILURE, {
+          actions.withPayload(types.DELETE_COSTS_FAILURE, {
             status: error.message,
           }),
         ),
       )
-      .finally(dispatch(getIncomes()));
+      .finally(dispatch(getCosts()));
   };
 };

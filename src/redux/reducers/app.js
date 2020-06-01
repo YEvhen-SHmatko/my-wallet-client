@@ -33,7 +33,7 @@ const incomes = (state = INITIAL_STATE.app.incomes, { payload, type }) => {
       return state;
   }
 };
-const products = (state = INITIAL_STATE.app, { payload, type }) => {
+const products = (state = INITIAL_STATE.app.products, { payload, type }) => {
   switch (type) {
     case types.GET_PRODUCTS_STARTED:
     case types.GET_PRODUCTS_FAILURE:
@@ -44,4 +44,32 @@ const products = (state = INITIAL_STATE.app, { payload, type }) => {
       return state;
   }
 };
-export default combineReducers({ balance, incomes, products });
+const costs = (state = INITIAL_STATE.app.costs, { payload, type }) => {
+  switch (type) {
+    case types.GET_COSTS_STARTED:
+    case types.GET_COSTS_FAILURE:
+      return state;
+    case types.GET_COSTS_SUCCESS:
+      return payload;
+    default:
+      return state;
+  }
+};
+const transaction = (
+  state = { transaction: { test: 'test' } },
+  { payload, type },
+) => {
+  switch (type) {
+    case types.GET_COSTS_STARTED:
+    case types.GET_COSTS_FAILURE:
+      return state;
+    case types.GET_COSTS_SUCCESS:
+      return payload;
+    default:
+      return state;
+  }
+};
+export default combineReducers({
+  products,
+  transaction,
+});

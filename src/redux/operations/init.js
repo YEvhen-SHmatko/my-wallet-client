@@ -5,6 +5,7 @@ import * as types from '../types';
 import * as balance from './balance';
 import * as income from './income';
 import * as product from './product';
+import * as cost from './cost';
 
 const init = () => {
   const session = `Bearer ${
@@ -21,8 +22,6 @@ const initKapusta = () => {
         .then(res => {
           axios.defaults.headers.common.Authorization = res;
         })
-        .then(() => dispatch(balance.getBalance()))
-        .then(() => dispatch(income.getIncomes()))
         .then(() => dispatch(product.getProducts()))
         .catch(err => new Error(err))
         .finally(() =>

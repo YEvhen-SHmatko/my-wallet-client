@@ -18,13 +18,40 @@
   position: relative;
 }
 .text_select {
+  z-index: 200;
   padding: 0.72rem;
   position: absolute;
   transform: translateY(-36px);
   width: 100%;
-  height: 200px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
+  border: 2px solid #f4f6fb;
+  border-right: 3px solid #f4f6fb;
+  padding-bottom: 20px;
+}
+.search_list {
+  list-style: none;
+  height: 100px;
+  overflow-y: auto;
+}
+.search_item {
+  width: 100%;
+}
+.search_btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 11px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: 2px solid #f4f6fb;
+  padding: 4px;
+  transition: all, 0.4s;
+}
+.search_btn:hover {
+  background: #f4f6fb;
 }
 .text {
   width: 100%;
@@ -131,21 +158,12 @@
     flex-direction: row;
     flex-wrap: nowrap;
   }
-  .text-wrap {
-    width: 100%;
-    position: relative;
-  }
   .text_select {
-    z-index: 200;
-    background: #fff;
-    border: 2px solid #f4f6fb;
-    border-right: 3px solid #f4f6fb;
-    position: absolute;
     width: 100%;
     min-width: 370px;
-    max-width: 370px;
-    height: 200px;
+    max-width: 372px;
   }
+
   .text {
     outline: inherit;
     width: 100%;
@@ -198,6 +216,10 @@
     max-width: 580px;
     display: flex;
     flex-direction: row;
+  }
+  .text_select {
+    position: absolute;
+    transform: translateY(-6px);
   }
   .text {
     max-width: 470px;
