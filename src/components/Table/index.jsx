@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import test from './MOCK_DATA.json';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import Styles from './index.module.css';
 import { Mobile, Default } from '../../services/mediaQuery';
 import Trash from '../Trash';
@@ -8,7 +8,20 @@ import Date from '../MyDate';
 import Category from '../Category';
 import Name from '../Name';
 
-const Table = () => {
+const Table = ({ dataIncomes }) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    setData(dataIncomes);
+  }, [dataIncomes]);
+  const mapper = arr => {
+    return arr.map(income => ({
+      id: income._id,
+      date: income.date.slice(0, 10),
+      name: 'Пополнение баланса',
+      category: 'Доходы',
+      cost: `+ ${income.amount.toFixed(2)}`,
+    }));
+  };
   return (
     <>
       <Mobile>{/* redirect */}</Mobile>
@@ -23,7 +36,7 @@ const Table = () => {
               <Trash id="trashHead" icon={false} />
             </div>
             <ul className={Styles.list}>
-              {test.map(item => (
+              {mapper(data).map(item => (
                 <li key={item.id} className={Styles.item}>
                   <Date date={item.date} />
                   <Name name={item.name} />
@@ -39,5 +52,7 @@ const Table = () => {
     </>
   );
 };
-
-export default Table;
+const MSTP = store => ({
+  dataIncomes: store.app.incomes,
+});
+export default connect(MSTP)(Table);

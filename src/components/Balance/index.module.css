@@ -28,6 +28,13 @@
   font-weight: 700;
   text-align: center;
 }
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.input[type='number'] {
+  -moz-appearance: textfield;
+}
 .btn {
   composes: bord;
   max-width: 116px;
@@ -38,6 +45,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.btn:hover {
+  color: #fff;
+  background: #ff7d2f;
+}
+.btn:disabled {
+  cursor: auto;
+  color: #fff;
+  background: #828282;
 }
 .form {
   display: flex;

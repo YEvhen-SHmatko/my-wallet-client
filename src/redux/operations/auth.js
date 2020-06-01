@@ -2,22 +2,24 @@ import axios from 'axios';
 import * as actions from '../actions';
 import * as types from '../types';
 import * as API from '../../services/API';
-import INITIAL_STATE from '../INITIAL_STATE';
+import INITIAL_STATE from '../initState';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export const authLogin = data => {
   return dispatch => {
-    dispatch(actions.Started(types.AUTH_LOGIN_STARTED));
+    dispatch(actions.withOutPayload(types.AUTH_LOGIN_STARTED));
     axios
-      .post(API.PostAuthLogin, JSON.stringify(data))
+      .post(API.Login, JSON.stringify(data))
       .then(res => {
-        dispatch(actions.Success(types.AUTH_LOGIN_SUCCESS, res.data));
+        dispatch(actions.withPayload(types.AUTH_LOGIN_SUCCESS, res.data));
         axios.defaults.headers.common.Authorization = `Bearer ${res.data.user.token}`;
       })
       .catch(error =>
         dispatch(
-          actions.Failure(types.AUTH_LOGIN_FAILURE, { status: error.message }),
+          actions.withPayload(types.AUTH_LOGIN_FAILURE, {
+            status: error.message,
+          }),
         ),
       );
   };
@@ -25,16 +27,16 @@ export const authLogin = data => {
 
 export const authRegister = data => {
   return dispatch => {
-    dispatch(actions.Started(types.AUTH_REGISTER_STARTED));
+    dispatch(actions.withOutPayload(types.AUTH_REGISTER_STARTED));
     axios
-      .post(API.PostAuthRegister, JSON.stringify(data))
+      .post(API.Register, JSON.stringify(data))
       .then(res => {
-        dispatch(actions.Success(types.AUTH_REGISTER_SUCCESS, res.data));
+        dispatch(actions.withPayload(types.AUTH_REGISTER_SUCCESS, res.data));
         axios.defaults.headers.common.Authorization = `Bearer ${res.data.user.token}`;
       })
       .catch(error =>
         dispatch(
-          actions.Failure(types.AUTH_REGISTER_FAILURE, {
+          actions.withPayload(types.AUTH_REGISTER_FAILURE, {
             status: error.message,
           }),
         ),
@@ -44,16 +46,20 @@ export const authRegister = data => {
 
 export const authLogout = data => {
   return dispatch => {
-    dispatch(actions.Started(types.AUTH_LOGOUT_STARTED));
+    dispatch(actions.withOutPayload(types.AUTH_LOGOUT_STARTED));
     axios
-      .post(API.PostAuthLogout)
+      .post(API.Logout)
       .then(res => {
-        dispatch(actions.Success(types.AUTH_LOGOUT_SUCCESS, INITIAL_STATE));
+        dispatch(
+          actions.withPayload(types.AUTH_LOGOUT_SUCCESS, {
+            ...INITIAL_STATE.public,
+          }),
+        );
         axios.defaults.headers.common.Authorization = '';
       })
       .catch(error =>
         dispatch(
-          actions.Failure(types.AUTH_LOGOUT_FAILURE, {
+          actions.withPayload(types.AUTH_LOGOUT_FAILURE, {
             status: error.message,
           }),
         ),

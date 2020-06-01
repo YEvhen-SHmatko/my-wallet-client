@@ -1,7 +1,7 @@
 import * as types from '../types';
-import INITIAL_STATE from '../INITIAL_STATE';
+import INITIAL_STATE from '../initState';
 
-const authReducer = (state = INITIAL_STATE, { payload, type }) => {
+const authReducer = (state = INITIAL_STATE.public, { payload, type }) => {
   switch (type) {
     case types.AUTH_LOGIN_STARTED:
     case types.AUTH_REGISTER_STARTED:
@@ -12,7 +12,9 @@ const authReducer = (state = INITIAL_STATE, { payload, type }) => {
     case types.AUTH_LOGIN_SUCCESS:
     case types.AUTH_REGISTER_SUCCESS:
       return {
-        ...payload,
+        status: payload.status,
+        fullName: payload.user.userData.name.fullName,
+        session: payload.user.token,
         isLogin: true,
       };
     case types.AUTH_LOGOUT_SUCCESS:

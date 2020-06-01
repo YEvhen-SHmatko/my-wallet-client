@@ -1,16 +1,20 @@
 import React, { Suspense } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import operations from '../../redux/operations/init';
 import routes from '../../routes';
 // import Loader from '../Loader';
 
-const App = ({ isLogin }) => {
-  console.log(isLogin);
+const App = ({ isLogin, initKapusta }) => {
   return (
     <Suspense fallback="Loader">
       <Route path={routes.Home.path}>
         {isLogin ? (
-          <Redirect to={routes.DashBoardPage.path} />
+          <>
+            {initKapusta()}
+            <Redirect to={routes.DashBoardPage.path} />
+          </>
         ) : (
           <Redirect to={routes.AUTH_PAGE.path} />
         )}
@@ -35,4 +39,4 @@ const App = ({ isLogin }) => {
 const MSTP = store => ({
   isLogin: store.public.isLogin,
 });
-export default connect(MSTP, null)(App);
+export default connect(MSTP, { initKapusta: operations })(App);

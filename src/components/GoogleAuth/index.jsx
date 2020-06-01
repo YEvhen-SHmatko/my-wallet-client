@@ -4,7 +4,7 @@ import * as API from '../../services/API';
 
 const GoogleAuth = () => {
   return (
-    <a className={Styles.link} href={`${API.GetAuthByGoogle}`}>
+    <a className={Styles.link} href={`${API.AuthByGoogle}`}>
       <span className={Styles.icon} />
       Google
     </a>

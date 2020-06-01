@@ -1,11 +1,7 @@
-export const Started = type => ({
+export const withOutPayload = type => ({
   type,
 });
-export const Success = (type, payload) => ({
-  type,
-  payload,
-});
-export const Failure = (type, payload) => ({
+export const withPayload = (type, payload) => ({
   type,
   payload,
 });
