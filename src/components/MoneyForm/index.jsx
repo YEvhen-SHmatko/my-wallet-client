@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import * as selectors from '../../redux/selectors';
 import * as income from '../../redux/operations/income';
 import * as cost from '../../redux/operations/cost';
 import Styles from './index.module.css';
@@ -38,8 +39,9 @@ const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
     setCurrentValue(`${(0).toFixed(2)}`);
   };
 
-  const inputProducts = arr => {
-    return arr.filter(item => item.name.includes(text));
+  const inputProducts = data => {
+    console.log(data);
+    return data.filter(item => item.name.includes(text));
   };
 
   const handleSubmit = e => {
@@ -47,7 +49,6 @@ const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
     if (isExpenses) {
       if (id === '') return;
       if (+currentValue === 0) return;
-      console.log(id, currentValue);
       postCost(id, currentValue);
       handleClear();
       return;
@@ -98,7 +99,7 @@ const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
               placeholder={placeholder}
               rows={window.innerWidth < 768 ? 2 : 1}
             />
-            {select && isExpenses && (
+            {select && isExpenses && dataProducts.length > 0 && (
               <Wrapper className={Styles.text_select}>
                 <ul className={Styles.search_list}>
                   {inputProducts(dataProducts).map(product => (
@@ -157,10 +158,10 @@ MoneyForm.propTypes = {
   isExpenses: PropTypes.bool,
   postIncome: PropTypes.func.isRequired,
   postCost: PropTypes.func.isRequired,
-  dataProducts: PropTypes.array,
+  dataProducts: PropTypes.arrayOf(PropTypes.any),
 };
 const MSTP = store => ({
-  dataProducts: store.app.products,
+  dataProducts: selectors.getProducts(store),
 });
 export default connect(MSTP, {
   postIncome: income.postIncome,

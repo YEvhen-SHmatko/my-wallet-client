@@ -36,6 +36,10 @@ const App = ({ isLogin, initKapusta }) => {
     </Suspense>
   );
 };
+App.propTypes = {
+  isLogin: PropTypes.bool.isRequired,
+  initKapusta: PropTypes.func.isRequired,
+};
 const MSTP = store => ({
   isLogin: store.public.isLogin,
 });

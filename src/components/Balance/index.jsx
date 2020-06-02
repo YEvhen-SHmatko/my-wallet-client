@@ -5,6 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { isDefault } from '../../services/mediaQuery';
 import Styles from './index.module.css';
 import * as operations from '../../redux/operations/balance';
+import * as selectors from '../../redux/selectors';
 
 const Balance = ({ postBalance, balance }) => {
   const IsDefault = isDefault(useMediaQuery);
@@ -70,8 +71,8 @@ Balance.propTypes = {
   postBalance: PropTypes.func,
 };
 const MSTP = store => ({
-  balance: store.app.balance,
+  balance: selectors.getBalance(store),
 });
 export default connect(MSTP, {
-  postBalance: operations.postBalance,
+  postBalance: operations.postApiBalance,
 })(Balance);

@@ -2,9 +2,9 @@ import axios from 'axios';
 import * as actions from '../actions';
 import * as types from '../types';
 import * as API from '../../services/API';
-import INITIAL_STATE from '../initState';
+// import INITIAL_STATE from '../initState';
 
-export const getBalance = () => {
+export const getApiBalance = () => {
   return dispatch => {
     dispatch(actions.withOutPayload(types.GET_BALANCE_STARTED));
     axios
@@ -23,7 +23,7 @@ export const getBalance = () => {
       );
   };
 };
-export const postBalance = value => {
+export const postApiBalance = value => {
   return dispatch => {
     dispatch(actions.withOutPayload(types.POST_BALANCE_STARTED));
     axios

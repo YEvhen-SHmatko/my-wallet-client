@@ -8,6 +8,8 @@ export const Register = `${BaseURL}/auth/register`;
 
 export const Logout = `${BaseURL}/auth/logout`;
 
+export const Transactions = `${BaseURL}/transactions`;
+
 export const Income = `${BaseURL}/income`;
 
 export const Balance = `${BaseURL}/balance`;

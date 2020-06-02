@@ -9,7 +9,12 @@ export const getCosts = () => {
     axios
       .get(API.Costs)
       .then(res => {
-        dispatch(actions.withPayload(types.GET_COSTS_SUCCESS, res.data.costs));
+        console.log(res);
+        dispatch(
+          actions.withPayload(types.GET_COSTS_SUCCESS, {
+            costs: res.data.costs,
+          }),
+        );
       })
       .catch(error =>
         dispatch(
@@ -36,7 +41,11 @@ export const postCost = (productId, amount) => {
         }),
       )
       .then(res => {
-        dispatch(actions.withPayload(types.POST_COSTS_SUCCESS, res.data.costs));
+        dispatch(
+          actions.withPayload(types.POST_COSTS_SUCCESS, {
+            costs: res.data.costs,
+          }),
+        );
       })
       .catch(error =>
         dispatch(
@@ -54,9 +63,7 @@ export const deleteCost = id => {
     axios
       .delete(`${API.Income}/${id}`)
       .then(res => {
-        dispatch(
-          actions.withPayload(types.DELETE_COSTS_SUCCESS, res.data.balance),
-        );
+        dispatch(actions.withPayload(types.DELETE_COSTS_SUCCESS));
       })
       .catch(error =>
         dispatch(

@@ -2,10 +2,10 @@ import axios from 'axios';
 import { getLS } from '../../services/localStorage';
 import * as actions from '../actions';
 import * as types from '../types';
-import * as balance from './balance';
-import * as income from './income';
+import getTransactions from './transactions';
+// import * as income from './income';
 import * as product from './product';
-import * as cost from './cost';
+// import * as cost from './cost';
 
 const init = () => {
   const session = `Bearer ${
@@ -22,13 +22,14 @@ const initKapusta = () => {
         .then(res => {
           axios.defaults.headers.common.Authorization = res;
         })
+        .then(() => dispatch(getTransactions()))
         .then(() => dispatch(product.getProducts()))
         .catch(err => new Error(err))
         .finally(() =>
           dispatch(actions.withPayload(types.INIT_KAPUSTA_SUCCESS, true)),
         );
     } catch (error) {
-      dispatch(actions.withOutPayload(types.GET_BALANCE_FAILURE));
+      dispatch(actions.withOutPayload(types.INIT_KAPUSTA_FAILURE));
     }
   };
 };

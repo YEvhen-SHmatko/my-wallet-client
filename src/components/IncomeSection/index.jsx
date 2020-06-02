@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { isMobile, isTablet, Default } from '../../services/mediaQuery';
 import Calendar from '../Calendar';

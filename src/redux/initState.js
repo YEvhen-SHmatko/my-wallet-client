@@ -5,12 +5,16 @@ const initState = {
     session: '',
     isLogin: false,
   },
-  app: {
+  transactions: {
     balance: 0,
-    incomes: [],
-    products: [],
+    income: [],
     costs: [],
+    error: {
+      message: '',
+    },
   },
+  categories: [],
+  products: [],
   init: false,
 };
 
