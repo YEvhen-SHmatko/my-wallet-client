@@ -9,7 +9,6 @@ const getTransactions = () => {
     axios
       .get(API.Transactions)
       .then(res => {
-        console.log(res);
         dispatch(actions.withPayload(types.GET_TRANSACTIONS_SUCCESS, res.data));
       })
       .catch(error =>

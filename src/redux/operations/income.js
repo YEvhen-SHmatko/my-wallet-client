@@ -10,7 +10,9 @@ export const getIncomes = () => {
       .get(API.Income)
       .then(res => {
         dispatch(
-          actions.withPayload(types.GET_INCOME_SUCCESS, res.data.incomes),
+          actions.withPayload(types.GET_INCOME_SUCCESS, {
+            income: res.data.incomes,
+          }),
         );
       })
       .catch(error =>
@@ -35,7 +37,9 @@ export const postIncome = amount => {
       )
       .then(res => {
         dispatch(
-          actions.withPayload(types.POST_INCOME_SUCCESS, res.data.balance),
+          actions.withPayload(types.POST_INCOME_SUCCESS, {
+            balance: res.data.balance,
+          }),
         );
       })
       .catch(error =>
@@ -45,7 +49,7 @@ export const postIncome = amount => {
           }),
         ),
       )
-      .finally(dispatch(getIncomes()));
+      .finally(() => dispatch(getIncomes()));
   };
 };
 export const deleteIncome = id => {
@@ -55,7 +59,9 @@ export const deleteIncome = id => {
       .delete(`${API.Income}/${id}`)
       .then(res => {
         dispatch(
-          actions.withPayload(types.DELETE_INCOME_SUCCESS, res.data.balance),
+          actions.withPayload(types.DELETE_INCOME_SUCCESS, {
+            balance: res.data.balance,
+          }),
         );
       })
       .catch(error =>
@@ -65,6 +71,6 @@ export const deleteIncome = id => {
           }),
         ),
       )
-      .finally(dispatch(getIncomes()));
+      .finally(() => dispatch(getIncomes()));
   };
 };

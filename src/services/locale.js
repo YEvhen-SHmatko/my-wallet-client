@@ -1,2 +1,2 @@
-export const currency = 'UAN';
+export const currency = `грн`;
 export const currency2 = 'UAN';

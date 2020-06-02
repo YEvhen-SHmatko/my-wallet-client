@@ -17,5 +17,6 @@ export const Balance = `${BaseURL}/balance`;
 export const Categories = `${BaseURL}/categories`;
 
 export const Costs = `${BaseURL}/costs`;
+export const Cost = `${BaseURL}/cost`;
 
 export const Products = `${BaseURL}/products`;

@@ -35,6 +35,7 @@ const Balance = ({ postBalance, balance }) => {
       postBalance(newBalance);
     }
   };
+  const disabled = balance !== 0;
   return (
     <div className={IsDefault ? Styles.Default_section : Styles.section}>
       <div className={IsDefault ? Styles.Default_title : Styles.title}>
@@ -42,7 +43,7 @@ const Balance = ({ postBalance, balance }) => {
       </div>
       <div className={Styles.form}>
         <input
-          disabled={balance > 0}
+          disabled={disabled}
           className={IsDefault ? Styles.Default_input : Styles.input}
           type="text"
           value={input}
@@ -52,7 +53,7 @@ const Balance = ({ postBalance, balance }) => {
           onBlur={handleBlur}
         />
         <button
-          disabled={balance > 0}
+          disabled={disabled}
           className={IsDefault ? Styles.Default_btn : Styles.btn}
           type="button"
           onClick={handleClick}

@@ -7,9 +7,8 @@ export const getCosts = () => {
   return dispatch => {
     dispatch(actions.withOutPayload(types.GET_COSTS_STARTED));
     axios
-      .get(API.Costs)
+      .get(API.Transactions)
       .then(res => {
-        console.log(res);
         dispatch(
           actions.withPayload(types.GET_COSTS_SUCCESS, {
             costs: res.data.costs,
@@ -19,7 +18,7 @@ export const getCosts = () => {
       .catch(error =>
         dispatch(
           actions.withPayload(types.GET_COSTS_FAILURE, {
-            status: error.message,
+            // status: error.message,
           }),
         ),
       );
@@ -41,9 +40,10 @@ export const postCost = (productId, amount) => {
         }),
       )
       .then(res => {
+        console.log(res.data);
         dispatch(
           actions.withPayload(types.POST_COSTS_SUCCESS, {
-            costs: res.data.costs,
+            // balance: res.data.balance,
           }),
         );
       })
@@ -54,24 +54,28 @@ export const postCost = (productId, amount) => {
           }),
         ),
       )
-      .finally(dispatch(getCosts()));
+      .finally(() => dispatch(getCosts()));
   };
 };
 export const deleteCost = id => {
   return dispatch => {
     dispatch(actions.withOutPayload(types.DELETE_COSTS_STARTED));
     axios
-      .delete(`${API.Income}/${id}`)
+      .delete(`${API.Costs}/${id}`)
       .then(res => {
-        dispatch(actions.withPayload(types.DELETE_COSTS_SUCCESS));
+        dispatch(
+          actions.withPayload(types.DELETE_COSTS_SUCCESS, {
+            balance: res.data.balance,
+          }),
+        );
       })
       .catch(error =>
         dispatch(
           actions.withPayload(types.DELETE_COSTS_FAILURE, {
-            status: error.message,
+            // status: error.message,
           }),
         ),
       )
-      .finally(dispatch(getCosts()));
+      .finally(() => dispatch(getCosts()));
   };
 };

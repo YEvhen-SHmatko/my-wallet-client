@@ -2,7 +2,6 @@ import axios from 'axios';
 import * as actions from '../actions';
 import * as types from '../types';
 import * as API from '../../services/API';
-// import INITIAL_STATE from '../initState';
 
 export const getApiBalance = () => {
   return dispatch => {
@@ -11,7 +10,9 @@ export const getApiBalance = () => {
       .get(API.Balance)
       .then(res => {
         dispatch(
-          actions.withPayload(types.GET_BALANCE_SUCCESS, res.data.balance),
+          actions.withPayload(types.GET_BALANCE_SUCCESS, {
+            balance: res.data.balance,
+          }),
         );
       })
       .catch(error =>
@@ -35,7 +36,9 @@ export const postApiBalance = value => {
       )
       .then(res => {
         dispatch(
-          actions.withPayload(types.POST_BALANCE_SUCCESS, res.data.balance),
+          actions.withPayload(types.POST_BALANCE_SUCCESS, {
+            balance: res.data.balance,
+          }),
         );
       })
       .catch(error =>

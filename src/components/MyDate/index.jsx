@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
-import Moment from 'react-moment';
+import moment from 'moment';
 import 'moment-timezone';
 import { isMobile, isTablet } from '../../services/mediaQuery';
 import Styles from './index.module.css';
-
-Moment.globalLocale = 'ru';
 
 const MyDate = ({ date }) => {
   const IsMobile = isMobile(useMediaQuery);
@@ -21,7 +19,7 @@ const MyDate = ({ date }) => {
           : Styles.Desktop_section
       }
     >
-      <Moment date={date} format="DD.MM.YYYY" />
+      {moment(date).format('DD.MM.YYYY')}
     </div>
   );
 };

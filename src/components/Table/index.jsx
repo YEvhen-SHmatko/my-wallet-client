@@ -20,24 +20,26 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
     setData(dataIncomes);
   }, [isExpenses, dataIncomes, dataExpenses]);
 
-  const mapper = arr => {
+  const mapper = mapData => {
     if (isExpenses) {
-      return arr.map(cost => ({
-        id: cost.forDeleteId,
+      return mapData.map(cost => ({
+        id: `${cost.forDeleteId}/${cost.costsId}`,
         date: cost.date,
         name: cost.product.name,
         category: cost.product.category.name,
         cost: `- ${cost.amount.toFixed(2)}`,
       }));
     }
-    return arr.map(income => ({
-      id: income.incomeId,
+    return mapData.map(income => ({
+      // eslint-disable-next-line no-underscore-dangle
+      id: income.incomeId || income._id,
       date: income.date,
       name: 'Пополнение баланса',
       category: 'Доходы',
       cost: `+ ${income.amount.toFixed(2)}`,
     }));
   };
+
   return (
     <>
       <Mobile>{/* redirect */}</Mobile>
@@ -59,7 +61,7 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
                     <Name name={item.name} />
                     <Category category={item.category} />
                     <Cost cost={item.cost} />
-                    <Trash id={item.id} />
+                    <Trash id={item.id} isExpenses={isExpenses} />
                   </li>
                 ))}
             </ul>

@@ -40,8 +40,9 @@ const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
   };
 
   const inputProducts = data => {
-    console.log(data);
-    return data.filter(item => item.name.includes(text));
+    return data.filter(item =>
+      item.name.toLowerCase().includes(text.toLowerCase()),
+    );
   };
 
   const handleSubmit = e => {
