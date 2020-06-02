@@ -15,6 +15,9 @@
   align-items: center;
   padding-bottom: 1em;
 }
+.title_text {
+  margin-right: 0.4em;
+}
 .bord {
   padding: 10px 20px;
   background: transparent;

@@ -1,28 +1,37 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
+import Moment from 'react-moment';
+import * as selectors from '../../redux/selectors';
 import Styles from './index.module.css';
 import { isDefault } from '../../services/mediaQuery';
+import { currency } from '../../services/locale';
 
-const BalanceReport = ({ value, date }) => {
+import 'moment-timezone';
+
+const BalanceReport = ({ balance, date }) => {
   const IsDefault = isDefault(useMediaQuery);
   return (
     <div className={IsDefault ? Styles.Default_section : Styles.section}>
-      <div
-        className={IsDefault ? Styles.Default_title : Styles.title}
-      >{`Баланс на ${date}:`}</div>
+      <div className={IsDefault ? Styles.Default_title : Styles.title}>
+        <span className={Styles.title_text}>Баланс на</span>
+        <Moment date={new Date()} format="DD.MM.YYYY" />:
+      </div>
       <span
         className={IsDefault ? Styles.Default_value : Styles.value}
-      >{`${value}.00 UAN`}</span>
+      >{`${balance.toFixed(2)} ${currency}`}</span>
     </div>
   );
 };
+
 BalanceReport.defaultProps = {
-  value: 0,
-  date: '17.05.1991',
+  balance: 0,
 };
 BalanceReport.propTypes = {
-  value: PropTypes.number,
-  date: PropTypes.string,
+  balance: PropTypes.number,
 };
-export default BalanceReport;
+const MSTP = store => ({
+  balance: selectors.getBalance(store),
+});
+export default connect(MSTP)(BalanceReport);

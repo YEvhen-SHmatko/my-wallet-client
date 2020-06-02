@@ -24,7 +24,7 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
     if (isExpenses) {
       return arr.map(cost => ({
         id: cost.forDeleteId,
-        date: cost.date.slice(0, 10),
+        date: cost.date,
         name: cost.product.name,
         category: cost.product.category.name,
         cost: `- ${cost.amount.toFixed(2)}`,
@@ -32,7 +32,7 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
     }
     return arr.map(income => ({
       id: income.incomeId,
-      date: income.date.slice(0, 10),
+      date: income.date,
       name: 'Пополнение баланса',
       category: 'Доходы',
       cost: `+ ${income.amount.toFixed(2)}`,

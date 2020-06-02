@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Moment from 'react-moment';
 import Styles from './index.module.css';
 import { Default } from '../../services/mediaQuery';
 import IconArrow from './IconArrow';

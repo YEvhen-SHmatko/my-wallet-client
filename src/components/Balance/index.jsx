@@ -6,13 +6,14 @@ import { isDefault } from '../../services/mediaQuery';
 import Styles from './index.module.css';
 import * as operations from '../../redux/operations/balance';
 import * as selectors from '../../redux/selectors';
+import { currency } from '../../services/locale';
 
 const Balance = ({ postBalance, balance }) => {
   const IsDefault = isDefault(useMediaQuery);
-  const [input, setInput] = useState(`${(+balance).toFixed(2)} UAN`);
+  const [input, setInput] = useState(`${(+balance).toFixed(2)} ${currency}`);
   const [newBalance, setNewBalance] = useState(balance);
   useEffect(() => {
-    setInput(`${(+balance).toFixed(2)} UAN`);
+    setInput(`${(+balance).toFixed(2)} ${currency}`);
     setNewBalance(balance);
   }, [balance]);
   const handleChange = e => {
@@ -27,7 +28,7 @@ const Balance = ({ postBalance, balance }) => {
   };
   const handleBlur = () => {
     setNewBalance(+input);
-    setInput(`${(+input).toFixed(2)} UAN`);
+    setInput(`${(+input).toFixed(2)} ${currency}`);
   };
   const handleClick = () => {
     if (balance === 0) {
