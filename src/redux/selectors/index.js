@@ -1,5 +1,5 @@
-// import { createSelector } from 'reselect';
-
+import { createSelector } from 'reselect';
+import { getAmountByPeriod } from '../../services/hendlers';
 // -----// PUBLIC //-----//
 export const getStatus = store => {
   return store.public.isLogin;
@@ -47,6 +47,13 @@ export const getInit = store => {
 export const getPeriod = store => {
   return store.period;
 };
+
+export const getMonthStatistics = createSelector(
+  [getPeriod, getCosts],
+  (period, costs) => {
+    return getAmountByPeriod({ data: costs, startPeriod: period, viewOld: 6 });
+  },
+);
 // export const getFilterContacts = createSelector(
 //   [getContacts, getFilter],
 //   (contacts, filter) =>

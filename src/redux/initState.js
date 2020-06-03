@@ -1,4 +1,4 @@
-import moment from 'moment';
+import { thisDate } from '../services/hendlers';
 
 const initState = {
   public: {
@@ -19,9 +19,8 @@ const initState = {
   products: [],
   init: false,
   period: {
-    month: moment(new Date()).month(),
-    year: moment(new Date()).year(),
+    month: +thisDate().format('M'),
+    year: +thisDate().format('YYYY'),
   },
 };
-
 export default initState;

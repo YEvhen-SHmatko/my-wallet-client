@@ -2,13 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
-import Moment from 'react-moment';
 import * as selectors from '../../redux/selectors';
 import Styles from './index.module.css';
 import { isDefault } from '../../services/mediaQuery';
 import { currency } from '../../services/locale';
-
-import 'moment-timezone';
+import { thisDate } from '../../services/hendlers';
 
 const BalanceReport = ({ balance, date }) => {
   const IsDefault = isDefault(useMediaQuery);
@@ -16,7 +14,7 @@ const BalanceReport = ({ balance, date }) => {
     <div className={IsDefault ? Styles.Default_section : Styles.section}>
       <div className={IsDefault ? Styles.Default_title : Styles.title}>
         <span className={Styles.title_text}>Баланс на</span>
-        <Moment date={new Date()} format="DD.MM.YYYY" />:
+        {thisDate().format('DD.MM.YYYY')}:
       </div>
       <span
         className={IsDefault ? Styles.Default_value : Styles.value}

@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import operations from '../../redux/operations/init';
 import routes from '../../routes';
-// import Loader from '../Loader';
 
 const App = ({ isLogin, initKapusta }) => {
   return (
@@ -13,7 +12,8 @@ const App = ({ isLogin, initKapusta }) => {
         {isLogin ? (
           <>
             {initKapusta()}
-            <Redirect to={routes.DashBoardPage.path} />
+            {/* <Redirect to={routes.DashBoardPage.path} /> */}
+            <Redirect to={routes.ReportPage.path} />
           </>
         ) : (
           <Redirect to={routes.AUTH_PAGE.path} />
