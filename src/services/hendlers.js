@@ -28,11 +28,29 @@ export const TwoDigits = value => {
   const result = +value >= 10 ? +value : `0${+value}`;
   return result;
 };
-
+export const dataByDate = (data, { year, month }) => {
+  return data.filter(item => item.date.includes(`${year}-${TwoDigits(month)}`));
+};
+export const CostByPeriodAndCategories = (period, costs, categories) => {
+  const sum = data =>
+    data.reduce((a, { amount }) => {
+      return a + amount;
+    }, 0);
+  const result = categories.reduce((acc, category) => {
+    const allCosts = dataByDate(costs, period).filter(cost => {
+      if (cost.product.category.name === category.name) {
+        return true;
+      }
+      return false;
+    });
+    const amount = allCosts.length > 0 ? sum(allCosts) : 0;
+    acc.push({ name: category.name, allCosts, amount });
+    return acc;
+  }, []);
+  return result;
+};
 export const getAmountByMonth = (data, { year, month }) => {
-  const per = `${year}-${TwoDigits(month)}`;
-  const amount = data
-    .filter(item => item.date.includes(per))
+  const amount = dataByDate(data, { year, month })
     .map(item => item.amount)
     .reduce((acc, value) => acc + value, 0);
   const result = {

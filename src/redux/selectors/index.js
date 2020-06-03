@@ -1,5 +1,8 @@
 import { createSelector } from 'reselect';
-import { getAmountByPeriod } from '../../services/hendlers';
+import {
+  getAmountByPeriod,
+  CostByPeriodAndCategories,
+} from '../../services/hendlers';
 // -----// PUBLIC //-----//
 export const getStatus = store => {
   return store.public.isLogin;
@@ -54,6 +57,7 @@ export const getCostsStatistic = createSelector(
     return getAmountByPeriod({ data: costs, startPeriod: period, viewOld: 6 });
   },
 );
+
 export const getIncomesStatistic = createSelector(
   [getPeriod, getIncomes],
   (period, data) => {
@@ -72,6 +76,11 @@ export const getMonthIncomes = createSelector(
   incomes => {
     return incomes[0].amount;
   },
+);
+export const getCostByPeriodAndCategories = createSelector(
+  [getPeriod, getCosts, getCategories],
+  (period, costs, categories) =>
+    CostByPeriodAndCategories(period, costs, categories),
 );
 // export const getFilterContacts = createSelector(
 //   [getContacts, getFilter],

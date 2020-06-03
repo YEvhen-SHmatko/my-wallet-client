@@ -5,6 +5,7 @@ import * as types from '../types';
 import getTransactions from './transactions';
 // import * as income from './income';
 import * as product from './product';
+import * as category from './category';
 // import * as cost from './cost';
 
 const init = () => {
@@ -24,6 +25,7 @@ const initKapusta = () => {
         })
         .then(() => dispatch(getTransactions()))
         .then(() => dispatch(product.getProducts()))
+        .then(() => dispatch(category.getCategories()))
         .catch(err => new Error(err))
         .finally(() =>
           dispatch(actions.withPayload(types.INIT_KAPUSTA_SUCCESS, true)),

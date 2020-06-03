@@ -40,7 +40,6 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
       cost: transformMoney(income.amount, false, false),
     }));
   };
-  console.log(data);
   return (
     <>
       <Mobile>{/* redirect */}</Mobile>
