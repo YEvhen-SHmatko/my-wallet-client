@@ -13,11 +13,11 @@ Chart.defaults.global.defaultFontStyle = '400';
 
 const mapper = json => {
   return json
-    .sort((a, b) => b.cost - a.cost)
+    .sort((a, b) => b.amount - a.amount)
     .reduce(
-      (acc, product) => {
-        acc.data.push(product.cost);
-        acc.labels.push(product.name);
+      (acc, cost) => {
+        acc.data.push(cost.amount);
+        acc.labels.push(cost.product.name);
         return acc;
       },
       { data: [], labels: [] },
@@ -77,12 +77,17 @@ const renderChart = ({ dom, data, isMobile = false, currency }) => {
                 Chart.defaults.global.defaultFontFamily,
               );
               ctx.textAlign = 'left';
-              chartInstance.aspectRatio = 0.538;
-              // chartInstance.barPercentage = 0.4;
-              // chartInstance.categoryPercentage = 0.55;
+              const myC = () => {
+                if (chartInstance.width < 760) {
+                  return { aspectRatio: 0.538, maxBarThickness: 16 };
+                }
+                return { aspectRatio: 4.2, maxBarThickness: 26 };
+              };
+
+              chartInstance.aspectRatio = myC().aspectRatio;
               this.data.datasets.forEach((dataset, i) => {
                 const meta = chartInstance.controller.getDatasetMeta(i);
-                this.data.datasets[0].maxBarThickness = 16;
+                this.data.datasets[0].maxBarThickness = myC().maxBarThickness;
                 // this.data.datasets[0].barPercentage = 0.9;
                 // this.data.datasets[0].categoryPercentage = 0.6;
                 meta.data.forEach((bar, index) => {
@@ -118,7 +123,7 @@ const renderChart = ({ dom, data, isMobile = false, currency }) => {
                 return 1.765;
               };
               chartInstance.aspectRatio = aspectRatio();
-              this.data.datasets[0].maxBarThickness = 30;
+              // this.data.datasets[0].maxBarThickness = 30;
               this.data.datasets[0].barPercentage = 0.9;
               this.data.datasets[0].categoryPercentage = 0.6;
               this.data.datasets.forEach((dataset, i) => {
@@ -160,6 +165,7 @@ const renderChart = ({ dom, data, isMobile = false, currency }) => {
               },
               ticks: {
                 display: true,
+                min: 0,
               },
             },
           ],
@@ -191,22 +197,26 @@ export default class ExpensesChartBySpecificCategory extends Component {
   static propTypes = {
     data: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        cost: PropTypes.string.isRequired,
+        product: PropTypes.shape({
+          name: PropTypes.string,
+        }).isRequired,
+        amount: PropTypes.number.isRequired,
       }).isRequired,
     ).isRequired,
     isMobile: PropTypes.bool,
     currency: PropTypes.string.isRequired,
   };
 
-  componentDidMount() {
+  componentDidUpdate(prevProps, prevState) {
     const { data, isMobile, currency } = this.props;
-    renderChart({
-      dom: 'canvas',
-      data,
-      isMobile,
-      currency,
-    });
+    if (prevProps.data !== data) {
+      renderChart({
+        dom: 'canvas',
+        data,
+        isMobile,
+        currency,
+      });
+    }
   }
 
   render() {

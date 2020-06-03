@@ -1,5 +1,7 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import {
   Mobile,
   Default,
@@ -19,11 +21,17 @@ import Period from '../Period';
 import BalanceReport from '../BalanceReport';
 import GoBack from '../GoBack';
 import MyChart from '../MyChart';
+import * as selectors from '../../redux/selectors';
 
-const Report = () => {
+const Report = ({ categories }) => {
   const IsMobile = isMobile(useMediaQuery);
   const IsTablet = isTablet(useMediaQuery);
   const IsDefault = isDefault(useMediaQuery);
+
+  let data = null;
+  if (categories && categories.length > 0) {
+    data = categories[0].allCosts;
+  }
   return (
     <>
       <Header />
@@ -64,25 +72,13 @@ const Report = () => {
             >
               <CategoryList />
             </div>
-            <div
-              className={IsDefault ? Styles.Default_info : Styles.Mobile_info}
-            >
-              <MyChart
-                data={[
-                  { name: 'chery', cost: '2500' },
-                  { name: 'bacon', cost: '4500' },
-                  { name: 'tomato', cost: '500' },
-                  { name: 'chery', cost: '5500' },
-                  { name: 'bacon', cost: '4100' },
-                  { name: 'tomato', cost: '300' },
-                  { name: 'chery', cost: '2000' },
-                  { name: 'bacon', cost: '1500' },
-                  { name: 'tomato', cost: '500' },
-                  { name: 'tomato', cost: '200' },
-                  // { name: 'tomato', cost: '200' },//11
-                ]}
-              />
-            </div>
+            {data && (
+              <div
+                className={IsDefault ? Styles.Default_info : Styles.Mobile_info}
+              >
+                <MyChart data={data} />
+              </div>
+            )}
           </div>
         </Container>
       </main>
@@ -92,4 +88,10 @@ const Report = () => {
     </>
   );
 };
-export default Report;
+Report.propTypes = {
+  categories: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
+const MSTP = store => ({
+  categories: selectors.getCostByPeriodAndCategories(store),
+});
+export default connect(MSTP, null)(Report);

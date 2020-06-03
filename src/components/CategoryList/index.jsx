@@ -2,13 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as selectors from '../../redux/selectors';
-// import { CategoryCostByPeriod } from '../../services/hendlers';
+import { transformMoney, srcIcon } from '../../services/hendlers';
 import Wrapper from '../Wrapper';
 import CategoryIcon from '../CategoryIcon';
 import Styles from './index.module.css';
 
 const CategoryList = ({ categories }) => {
-  // console.log(CategoryCostByPeriod(getCosts, getPeriod));
   const data = categories && categories.length > 0;
   return (
     <>
@@ -16,13 +15,12 @@ const CategoryList = ({ categories }) => {
         {data ? (
           <div className={Styles.section}>
             {categories.map(category => (
-              <>
-                <CategoryIcon
-                  title={category.name}
-                  cost={category.amount.replace}
-                  src="./images/svg/diet.svg"
-                />
-              </>
+              <CategoryIcon
+                key={category.id}
+                title={category.name.replace(',', ' ')}
+                cost={transformMoney(category.amount, null, false)}
+                src={srcIcon(category.name)}
+              />
             ))}
           </div>
         ) : (

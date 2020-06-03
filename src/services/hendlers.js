@@ -2,14 +2,39 @@ import { nanoid } from 'nanoid';
 import moment from 'moment';
 import 'moment/locale/ru';
 
+export const srcIcon = name => {
+  switch (name) {
+    case 'Продукты':
+      return './images/svg/diet.svg';
+    case 'Транспорт':
+      return './images/svg/car.svg';
+    case 'Хобби':
+      return './images/svg/clay.svg';
+    case 'Алкоголь':
+      return './images/svg/cocktail.svg';
+    case 'Здоровье':
+      return './images/svg/hands-holding-heart.svg';
+    case 'Все для дома':
+      return './images/svg/couch.svg';
+    case 'Техника':
+      return './images/svg/tools.svg';
+    case 'Коммуналка,Связь':
+      return './images/svg/invoice.svg';
+    case 'Образование':
+      return './images/svg/book.svg';
+    case 'Развлечение':
+      return './images/svg/kite.svg';
+    default:
+      return './images/svg/ufo.svg';
+  }
+};
 export const transformMoney = (money, minus = false, currency = true) => {
   const curr = currency ? 'грн' : '';
+  const num = money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
   if (minus === null) {
-    return `${money.toFixed(2)} ${curr}`;
+    return `${num} ${curr}`;
   }
-  return minus
-    ? `- ${money.toFixed(2)} ${curr}`
-    : `+ ${money.toFixed(2)} ${curr}`;
+  return minus ? `- ${num} ${curr}` : `+ ${num} ${curr}`;
 };
 
 export const thisDate = period => {
@@ -44,7 +69,7 @@ export const CostByPeriodAndCategories = (period, costs, categories) => {
       return false;
     });
     const amount = allCosts.length > 0 ? sum(allCosts) : 0;
-    acc.push({ name: category.name, allCosts, amount });
+    acc.push({ id: nanoid(), name: category.name, allCosts, amount });
     return acc;
   }, []);
   return result;
