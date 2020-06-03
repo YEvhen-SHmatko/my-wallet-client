@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import * as selectors from '../../redux/selectors';
 import { isDefault } from '../../services/mediaQuery';
+import { transformMoney } from '../../services/hendlers';
 import Wrapper from '../Wrapper';
 import Styles from './index.module.css';
 
-const index = ({ income, expens }) => {
+const MoneyList = ({ income, expens }) => {
   const IsDefault = isDefault(useMediaQuery);
   return (
     <Wrapper>
@@ -16,7 +19,7 @@ const index = ({ income, expens }) => {
           >
             Расходы:
           </div>
-          <div className={Styles.minus}>{`- ${income} грн`}</div>
+          <div className={Styles.minus}>{transformMoney(expens, true)}</div>
         </div>
         <div className={IsDefault ? Styles.Default_item : Styles.Mobile_item}>
           <div
@@ -24,19 +27,23 @@ const index = ({ income, expens }) => {
           >
             Доходы:
           </div>
-          <div className={Styles.value}>{`+ ${expens} грн`}</div>
+          <div className={Styles.value}>{transformMoney(income)}</div>
         </div>
       </div>
     </Wrapper>
   );
 };
 
-index.defaultProps = {
-  expens: '18,000.00',
-  income: '45,000.00',
+MoneyList.defaultProps = {
+  expens: 18000.0,
+  income: 45000.0,
 };
-index.propTypes = {
-  expens: PropTypes.string,
-  income: PropTypes.string,
+MoneyList.propTypes = {
+  expens: PropTypes.number,
+  income: PropTypes.number,
 };
-export default index;
+const MSTP = store => ({
+  expens: selectors.getMonthCosts(store),
+  income: selectors.getMonthIncomes(store),
+});
+export default connect(MSTP, null)(MoneyList);

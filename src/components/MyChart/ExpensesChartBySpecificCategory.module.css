@@ -1,13 +1,37 @@
-.chart {
-  width: 100%;
-  min-width: 200px;
-  max-width: 100%;
-  padding: 1.32rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .canvas {
-  width: 100%;
-  max-width: 768px;
+  width: 280px;
+  height: 520px;
+}
+@media (min-width: 767px) {
+  .canvas {
+    width: 660px;
+    height: 420px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .canvas {
+    width: 760px;
+    height: 430px;
+  }
+}
+.section {
+  margin: 0 auto;
+  width: 280px;
+  height: 520px;
+}
+@media (min-width: 767px) {
+  .section {
+    padding-top: 16px;
+    width: 660px;
+    height: 420px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .section {
+    padding-top: 4px;
+    width: 760px;
+    height: 430px;
+  }
 }

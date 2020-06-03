@@ -5,10 +5,9 @@ import { useMediaQuery } from 'react-responsive';
 import * as selectors from '../../redux/selectors';
 import Styles from './index.module.css';
 import { isDefault } from '../../services/mediaQuery';
-import { currency } from '../../services/locale';
-import { thisDate } from '../../services/hendlers';
+import { thisDate, transformMoney } from '../../services/hendlers';
 
-const BalanceReport = ({ balance, date }) => {
+const BalanceReport = ({ balance }) => {
   const IsDefault = isDefault(useMediaQuery);
   return (
     <div className={IsDefault ? Styles.Default_section : Styles.section}>
@@ -16,9 +15,9 @@ const BalanceReport = ({ balance, date }) => {
         <span className={Styles.title_text}>Баланс на</span>
         {thisDate().format('DD.MM.YYYY')}:
       </div>
-      <span
-        className={IsDefault ? Styles.Default_value : Styles.value}
-      >{`${balance.toFixed(2)} ${currency}`}</span>
+      <span className={IsDefault ? Styles.Default_value : Styles.value}>
+        {transformMoney(balance, null)}
+      </span>
     </div>
   );
 };

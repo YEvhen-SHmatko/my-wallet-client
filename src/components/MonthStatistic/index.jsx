@@ -6,12 +6,13 @@ import * as selectors from '../../redux/selectors';
 import { isMobile, isTablet } from '../../services/mediaQuery';
 import Styles from './index.module.css';
 
-const MonthStatistic = ({ statisticData }) => {
+const MonthStatistic = ({ costsStatistic, incomeStatistic, isExpenses }) => {
   const IsMobile = isMobile(useMediaQuery);
   const IsTablet = isTablet(useMediaQuery);
+  const currentData = isExpenses ? costsStatistic : incomeStatistic;
   return (
     <>
-      {statisticData && statisticData.length > 0 && (
+      {currentData && currentData.length > 0 && (
         <ul
           className={
             IsMobile
@@ -22,7 +23,7 @@ const MonthStatistic = ({ statisticData }) => {
           }
         >
           <li className={Styles.item}>сводка</li>
-          {statisticData.map(item => (
+          {currentData.map(item => (
             <li className={Styles.item} key={item.id}>
               <span className={Styles.month}>{item.month}</span>
               <span className={Styles.cost}>{item.amount}</span>
@@ -33,9 +34,20 @@ const MonthStatistic = ({ statisticData }) => {
     </>
   );
 };
-
+MonthStatistic.defaultProps = {
+  isExpenses: false,
+};
 MonthStatistic.propTypes = {
-  statisticData: PropTypes.arrayOf(
+  isExpenses: PropTypes.bool,
+  costsStatistic: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      month: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
+      amount: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+  incomeStatistic: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       month: PropTypes.string.isRequired,
@@ -45,6 +57,7 @@ MonthStatistic.propTypes = {
   ).isRequired,
 };
 const MSTP = store => ({
-  statisticData: selectors.getMonthStatistics(store),
+  costsStatistic: selectors.getCostsStatistic(store),
+  incomeStatistic: selectors.getCostsStatistic(store),
 });
 export default connect(MSTP, null)(MonthStatistic);

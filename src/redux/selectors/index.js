@@ -48,10 +48,29 @@ export const getPeriod = store => {
   return store.period;
 };
 
-export const getMonthStatistics = createSelector(
+export const getCostsStatistic = createSelector(
   [getPeriod, getCosts],
   (period, costs) => {
     return getAmountByPeriod({ data: costs, startPeriod: period, viewOld: 6 });
+  },
+);
+export const getIncomesStatistic = createSelector(
+  [getPeriod, getIncomes],
+  (period, data) => {
+    return getAmountByPeriod({
+      data,
+      startPeriod: period,
+      viewOld: 6,
+    });
+  },
+);
+export const getMonthCosts = createSelector([getCostsStatistic], costs => {
+  return costs[0].amount;
+});
+export const getMonthIncomes = createSelector(
+  [getIncomesStatistic],
+  incomes => {
+    return incomes[0].amount;
   },
 );
 // export const getFilterContacts = createSelector(

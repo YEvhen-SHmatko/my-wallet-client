@@ -12,8 +12,8 @@ const App = ({ isLogin, initKapusta }) => {
         {isLogin ? (
           <>
             {initKapusta()}
-            {/* <Redirect to={routes.DashBoardPage.path} /> */}
-            <Redirect to={routes.ReportPage.path} />
+            <Redirect to={routes.DashBoardPage.path} />
+            {/* <Redirect to={routes.ReportPage.path} /> */}
           </>
         ) : (
           <Redirect to={routes.AUTH_PAGE.path} />

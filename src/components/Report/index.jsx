@@ -47,10 +47,10 @@ const Report = () => {
                 <div className={Styles.Period}>
                   <Period />
                 </div>
-                <BalanceReport date="13.05.2020" value={55000} />
+                <BalanceReport />
               </Mobile>
               <Default>
-                <BalanceReport date="13.05.2020" value={55000} />
+                <BalanceReport />
                 <Period />
               </Default>
             </div>

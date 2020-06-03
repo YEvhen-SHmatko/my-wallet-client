@@ -1,16 +1,15 @@
+/* eslint-disable no-underscore-dangle */
 import Chart from 'chart.js';
 
-const roundRect = function({ ctx, x, y, width, height, radius }) {
-  const cornerRadius = {
+function roundRect({ ctx, x, y, width, height, radius }) {
+  let cornerRadius = {
     upperLeft: 0,
     upperRight: 0,
     lowerLeft: 0,
     lowerRight: 0,
   };
   if (typeof radius === 'object') {
-    for (const side in radius) {
-      cornerRadius[side] = radius[side];
-    }
+    cornerRadius = { ...cornerRadius, ...radius };
   }
 
   ctx.beginPath();
@@ -29,9 +28,9 @@ const roundRect = function({ ctx, x, y, width, height, radius }) {
   ctx.lineTo(x, y + cornerRadius.upperLeft);
   ctx.quadraticCurveTo(x, y, x + cornerRadius.upperLeft, y);
   ctx.closePath();
-};
+}
 
-Chart.elements.Rectangle.prototype.draw = function() {
+function draw() {
   const { ctx } = this._chart;
   const vm = this._view;
   let left;
@@ -122,7 +121,7 @@ Chart.elements.Rectangle.prototype.draw = function() {
   let corner = cornerAt(0);
   ctx.moveTo(corner[0], corner[1]);
 
-  for (let i = 1; i < 4; i++) {
+  for (let i = 1; i < 4; i += 1) {
     corner = cornerAt(i);
     let nextCornerId = i + 1;
     if (nextCornerId === 4) {
@@ -168,4 +167,5 @@ Chart.elements.Rectangle.prototype.draw = function() {
   if (borderWidth) {
     ctx.stroke();
   }
-};
+}
+Chart.elements.Rectangle.prototype.draw = draw;

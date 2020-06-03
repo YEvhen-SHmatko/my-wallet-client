@@ -9,6 +9,7 @@ import Cost from '../Cost';
 import MyDate from '../MyDate';
 import Category from '../Category';
 import Name from '../Name';
+import { transformMoney } from '../../services/hendlers';
 
 const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
   const [data, setData] = useState([]);
@@ -27,7 +28,7 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
         date: cost.date,
         name: cost.product.name,
         category: cost.product.category.name,
-        cost: `- ${cost.amount.toFixed(2)}`,
+        cost: transformMoney(cost.amount, true, false),
       }));
     }
     return mapData.map(income => ({
@@ -36,10 +37,10 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
       date: income.date,
       name: 'Пополнение баланса',
       category: 'Доходы',
-      cost: `+ ${income.amount.toFixed(2)}`,
+      cost: transformMoney(income.amount, false, false),
     }));
   };
-
+  console.log(data);
   return (
     <>
       <Mobile>{/* redirect */}</Mobile>
@@ -47,7 +48,7 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
         <>
           <section className={Styles.section}>
             <div key="thead1" className={Styles.thead}>
-              <MyDate date="ДАТА" />
+              <MyDate date="ДАТА" title />
               <Name name="ОПИСАНИЕ" />
               <Category category="КАТЕГОРИЯ" />
               <Cost cost="СУММА" />

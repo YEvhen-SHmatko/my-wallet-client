@@ -2,9 +2,23 @@ import { nanoid } from 'nanoid';
 import moment from 'moment';
 import 'moment/locale/ru';
 
+export const transformMoney = (money, minus = false, currency = true) => {
+  const curr = currency ? 'грн' : '';
+  if (minus === null) {
+    return `${money.toFixed(2)} ${curr}`;
+  }
+  return minus
+    ? `- ${money.toFixed(2)} ${curr}`
+    : `+ ${money.toFixed(2)} ${curr}`;
+};
+
 export const thisDate = period => {
+  if (typeof period === 'string') {
+    const data = moment(period);
+    data.locale('ru');
+    return data;
+  }
   const data = moment(new Date());
-  data.locale('ru');
   if (period && period.year) data.year(period.year);
   if (period && period.month) data.month(period.month - 1);
   return data;
