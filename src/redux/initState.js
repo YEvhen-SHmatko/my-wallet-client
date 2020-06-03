@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const initState = {
   public: {
     status: '',
@@ -16,6 +18,10 @@ const initState = {
   categories: [],
   products: [],
   init: false,
+  period: {
+    month: moment(new Date()).month(),
+    year: moment(new Date()).year(),
+  },
 };
 
 export default initState;

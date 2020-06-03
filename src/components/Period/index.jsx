@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import period from '../../redux/operations/period';
+import * as selectors from '../../redux/selectors';
 import 'moment/locale/ru';
 import Styles from './index.module.css';
 import { Default } from '../../services/mediaQuery';
 import IconArrow from './IconArrow';
 
-const Period = () => {
-  const [year, setYear] = useState(2020);
-  const [month, setMonth] = useState(1);
+const Period = ({ month, year, setPeriod }) => {
   const increment = () => {
     if (month === 12) {
-      setYear(year + 1);
-      setMonth(1);
+      setPeriod({ year: 12, month: 1 });
       return;
     }
-    setMonth(month + 1);
+    setPeriod({ month: month + 1 });
   };
   const decrement = () => {
     if (month === 1) {
-      setYear(year - 1);
-      setMonth(12);
-      return;
+      setPeriod({ year: year - 1, month: 12 });
     }
-    setMonth(month - 1);
+    setPeriod({ month: month - 1 });
   };
   const data = moment(new Date());
   data.locale('ru');
@@ -44,5 +42,13 @@ const Period = () => {
     </div>
   );
 };
-
-export default Period;
+Period.propTypes = {
+  month: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  setPeriod: PropTypes.func.isRequired,
+};
+const MSTP = store => ({
+  month: selectors.getPeriod(store).month,
+  year: selectors.getPeriod(store).year,
+});
+export default connect(MSTP, { setPeriod: period })(Period);

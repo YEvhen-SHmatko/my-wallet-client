@@ -44,6 +44,9 @@ export const getInit = store => {
   return store.init;
 };
 // -----// Other logic //-----//
+export const getPeriod = store => {
+  return store.period;
+};
 // export const getFilterContacts = createSelector(
 //   [getContacts, getFilter],
 //   (contacts, filter) =>
