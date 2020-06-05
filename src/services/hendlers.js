@@ -28,6 +28,7 @@ export const srcIcon = name => {
       return './images/svg/ufo.svg';
   }
 };
+
 export const transformMoney = (money, minus = false, currency = true) => {
   const curr = currency ? 'грн' : '';
   const num = money.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -53,9 +54,11 @@ export const TwoDigits = value => {
   const result = +value >= 10 ? +value : `0${+value}`;
   return result;
 };
+
 export const dataByDate = (data, { year, month }) => {
   return data.filter(item => item.date.includes(`${year}-${TwoDigits(month)}`));
 };
+
 export const CostByPeriodAndCategories = (period, costs, categories) => {
   const sum = data =>
     data.reduce((a, { amount }) => {
@@ -74,6 +77,7 @@ export const CostByPeriodAndCategories = (period, costs, categories) => {
   }, []);
   return result;
 };
+
 export const getAmountByMonth = (data, { year, month }) => {
   const amount = dataByDate(data, { year, month })
     .map(item => item.amount)
@@ -86,6 +90,7 @@ export const getAmountByMonth = (data, { year, month }) => {
   };
   return result;
 };
+
 export const getAmountByPeriod = ({ data, startPeriod, viewOld }) => {
   let { year, month } = startPeriod;
   const result = [];
