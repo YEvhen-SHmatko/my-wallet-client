@@ -1,4 +1,5 @@
-.button {
+.link {
+  text-decoration: none;
   width: 120px;
   height: 40px;
   margin: 20px auto 40px;
@@ -15,12 +16,14 @@
   border: 1px solid transparent;
   border-radius: 20px;
   background-color: #f5f7fa;
+  transition: all, 0.4s;
 }
 .icon {
   width: 30px;
   height: 30px;
+  background-image: url('./images/google_PNG19635.png');
+  background-size: contain;
 }
-.button:hover {
-  background-color: #52555f;
-  transition: all 0.3s linear;
+.link:hover {
+  background-color: #ff8330;
 }

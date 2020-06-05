@@ -13,11 +13,12 @@
   font-family: 'Roboto';
   font-weight: 400;
   text-align: center;
-  /* text-transform: uppercase; */
-  text-transform: lowercase;
+  text-transform: uppercase;
+  /* text-transform: lowercase; */
 }
 .cost {
   text-align: center;
+  word-wrap: wrap;
 }
 .img {
   z-index: 2;

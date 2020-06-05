@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
 import { isMobile, isTablet } from '../../services/mediaQuery';
 import Styles from './index.module.css';
+import { thisDate } from '../../services/hendlers';
 
-const MyDate = ({ date }) => {
+const MyDate = ({ date, title }) => {
   const IsMobile = isMobile(useMediaQuery);
   const IsTablet = isTablet(useMediaQuery);
   return (
@@ -17,12 +18,17 @@ const MyDate = ({ date }) => {
           : Styles.Desktop_section
       }
     >
-      {date}
+      {title ? date : thisDate(date).format('YYYY.MM.DD')}
     </div>
   );
 };
 
+MyDate.defaultProps = {
+  title: false,
+};
+
 MyDate.propTypes = {
+  title: PropTypes.bool,
   date: PropTypes.string.isRequired,
 };
 export default MyDate;

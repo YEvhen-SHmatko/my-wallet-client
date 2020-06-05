@@ -1,4 +1,5 @@
 .section {
+  width: 140px;
   display: flex;
   flex-direction: column;
   font-size: 13px;
@@ -9,7 +10,7 @@
 }
 .month_section {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   text-transform: uppercase;
   color: #000000;

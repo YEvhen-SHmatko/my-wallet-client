@@ -1,14 +1,45 @@
-import React, { Component } from 'react';
-import test from './MOCK_DATA.json';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as selectors from '../../redux/selectors';
 import Styles from './index.module.css';
 import { Mobile, Default } from '../../services/mediaQuery';
 import Trash from '../Trash';
 import Cost from '../Cost';
-import Date from '../MyDate';
+import MyDate from '../MyDate';
 import Category from '../Category';
 import Name from '../Name';
+import { transformMoney } from '../../services/hendlers';
 
-const Table = () => {
+const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    if (isExpenses) {
+      setData(dataExpenses);
+      return;
+    }
+    setData(dataIncomes);
+  }, [isExpenses, dataIncomes, dataExpenses]);
+
+  const mapper = mapData => {
+    if (isExpenses) {
+      return mapData.map(cost => ({
+        id: `${cost.forDeleteId}/${cost.costsId}`,
+        date: cost.date,
+        name: cost.product.name,
+        category: cost.product.category.name,
+        cost: transformMoney(cost.amount, true, false),
+      }));
+    }
+    return mapData.map(income => ({
+      // eslint-disable-next-line no-underscore-dangle
+      id: income.incomeId || income._id,
+      date: income.date,
+      name: 'Пополнение баланса',
+      category: 'Доходы',
+      cost: transformMoney(income.amount, false, false),
+    }));
+  };
   return (
     <>
       <Mobile>{/* redirect */}</Mobile>
@@ -16,22 +47,23 @@ const Table = () => {
         <>
           <section className={Styles.section}>
             <div key="thead1" className={Styles.thead}>
-              <Date date="ДАТА" />
+              <MyDate date="ДАТА" title />
               <Name name="ОПИСАНИЕ" />
               <Category category="КАТЕГОРИЯ" />
               <Cost cost="СУММА" />
               <Trash id="trashHead" icon={false} />
             </div>
             <ul className={Styles.list}>
-              {test.map(item => (
-                <li key={item.id} className={Styles.item}>
-                  <Date date={item.date} />
-                  <Name name={item.name} />
-                  <Category category={item.category} />
-                  <Cost cost={item.cost} />
-                  <Trash id={item.id} />
-                </li>
-              ))}
+              {data.length !== 0 &&
+                mapper(data).map(item => (
+                  <li key={item.id} className={Styles.item}>
+                    <MyDate date={item.date} />
+                    <Name name={item.name} />
+                    <Category category={item.category} />
+                    <Cost cost={item.cost} />
+                    <Trash id={item.id} isExpenses={isExpenses} />
+                  </li>
+                ))}
             </ul>
           </section>
         </>
@@ -39,5 +71,16 @@ const Table = () => {
     </>
   );
 };
-
-export default Table;
+Table.defaultProps = {
+  isExpenses: false,
+};
+Table.propTypes = {
+  isExpenses: PropTypes.bool,
+  dataIncomes: PropTypes.arrayOf(PropTypes.any).isRequired,
+  dataExpenses: PropTypes.arrayOf(PropTypes.any).isRequired,
+};
+const MSTP = store => ({
+  dataIncomes: selectors.getIncomes(store),
+  dataExpenses: selectors.getCosts(store),
+});
+export default connect(MSTP)(Table);

@@ -1,4 +1,4 @@
-import React, { Component, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { Mobile, Default } from '../../services/mediaQuery';
 import routes from '../../routes';
@@ -29,7 +29,7 @@ const DashBoard = () => {
             <Suspense fallback="Loader">
               <Redirect to={routes.Expenses.path} />
             </Suspense>
-            <Wrapper newStyles={Styles.mainBody}>
+            <Wrapper className={Styles.mainBody}>
               <Suspense fallback="Loader">
                 <Switch>
                   <Route

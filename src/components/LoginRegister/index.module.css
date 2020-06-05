@@ -16,7 +16,7 @@
   max-width: 1280px;
   left: 50%;
   transform: translateX(-50%);
-  height: 290px;
+  min-height: 290px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -32,12 +32,12 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  height: 535px;
-  bottom: -460px;
+  min-height: 535px;
+  top: +180px;
 }
 .Tablet_section {
   composes: Mobile_section;
-  height: 510px;
+  min-height: 510px;
 }
 .Tablet_first {
   composes: Mobile_first;
@@ -45,7 +45,7 @@
 }
 .Tablet_second {
   composes: Mobile_second;
-  bottom: -260px;
+  top: +220px;
 }
 .Desktop_section {
   composes: Tablet_section;

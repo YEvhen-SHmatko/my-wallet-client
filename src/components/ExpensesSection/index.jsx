@@ -78,7 +78,7 @@ const ExpensesSection = () => {
           <MoneyForm isExpenses />
         </div>
         <div className={Styles.main}>
-          <Table />
+          <Table isExpenses />
           <MonthStatistic data={data} />
         </div>
       </Default>

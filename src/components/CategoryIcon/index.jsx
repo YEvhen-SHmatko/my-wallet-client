@@ -10,7 +10,6 @@ const CategoryIcon = ({ title, src, cost }) => (
     <div className={Styles.box} />
   </div>
 );
-const Default = () => <div>I</div>;
 CategoryIcon.defaultProps = {
   title: 'title',
   cost: 'cost',
