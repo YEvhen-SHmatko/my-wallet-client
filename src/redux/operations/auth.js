@@ -56,6 +56,7 @@ export const authLogout = data => {
           }),
         );
         axios.defaults.headers.common.Authorization = '';
+        dispatch(actions.withPayload(types.INIT_KAPUSTA_LOGOUT, false));
       })
       .catch(error =>
         dispatch(

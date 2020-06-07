@@ -20,3 +20,8 @@
   border-top-left-radius: 0 !important;
   margin-bottom: 40px;
 }
+.mainBody_disabled {
+  composes: mainBody;
+  cursor: pointer;
+  pointer-events: none;
+}

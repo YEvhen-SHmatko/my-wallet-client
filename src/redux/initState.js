@@ -11,9 +11,6 @@ const initState = {
     balance: 0,
     income: [],
     costs: [],
-    error: {
-      message: '',
-    },
   },
   categories: [],
   products: [],
@@ -22,5 +19,12 @@ const initState = {
     month: +thisDate().format('M'),
     year: +thisDate().format('YYYY'),
   },
+  currentDate: thisDate()._d,
+  currentCategory: '',
+  error: {
+    message: '',
+  },
+  isModal: false,
+  isExpenses: true,
 };
 export default initState;

@@ -1,6 +1,10 @@
-.main {
-  height: 200px;
-  width: 100%;
+.section {
+  position: relative;
+  z-index: 2;
   display: flex;
-  display: block;
+  flex-direction: column;
+}
+.main {
+  width: 320px;
+  margin: 0 auto;
 }

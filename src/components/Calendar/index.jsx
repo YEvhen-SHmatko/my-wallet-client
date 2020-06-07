@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ru from 'date-fns/locale/ru';
@@ -6,13 +8,14 @@ import { useMediaQuery } from 'react-responsive';
 import { isDefault } from '../../services/mediaQuery';
 import Styles from './index.module.css';
 import './stylingDataPicker.css';
+import currentDate from '../../redux/operations/currentDate';
+import * as selectors from '../../redux/selectors';
 
 registerLocale('ru', ru);
 
-const Calendar = () => {
-  const [startDate, setStartDate] = useState(new Date());
+const Calendar = ({ storeDate, setDate }) => {
   const handleChange = date => {
-    setStartDate(date);
+    setDate(date);
   };
   const IsDefault = isDefault(useMediaQuery);
   return (
@@ -22,11 +25,17 @@ const Calendar = () => {
         locale="ru"
         dateFormat="dd.MM.yyyy"
         className={Styles.btn}
-        selected={startDate}
+        selected={storeDate}
         onChange={handleChange}
       />
     </div>
   );
 };
-
-export default Calendar;
+Calendar.propTypes = {
+  storeDate: PropTypes.instanceOf(Date).isRequired,
+  setDate: PropTypes.func.isRequired,
+};
+const MSTP = store => ({
+  storeDate: selectors.getCurrentDate(store),
+});
+export default connect(MSTP, { setDate: currentDate })(Calendar);

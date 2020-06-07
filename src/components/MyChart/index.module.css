@@ -1,28 +1,22 @@
-/* .section {
-  width: 320px;
-  height: 560px;
-  margin: 0 auto;
+.section {
+  width: 280px;
+  margin: 20px auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
 }
 @media (min-width: 767px) {
   .section {
-    width: 690px;
+    width: 660px;
     height: 420px;
     padding: 8px;
-    border-top-left-radius: 25px;
-    border-top-right-radius: 25px;
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    box-shadow: 4.5px 7.794px 10.5px rgba(170, 178, 197, 0.78);
+    margin: 0 auto 20px;
   }
 }
 
 @media (min-width: 1279px) {
   .section {
-    width: 942px;
+    width: 900px;
     height: 430px;
   }
-} */
+}

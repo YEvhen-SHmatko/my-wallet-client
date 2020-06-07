@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import mapper from '../hendlers';
 
-class testV extends Component {
+class Horizontal extends Component {
   static defaultProps = {
     data: [],
     styles: {
@@ -61,10 +61,10 @@ class testV extends Component {
       &:last-child {
         border-bottom: 0;
       }
-      &:first-child #${barID} {
+      &:first-child .${barID} {
         background: #ee7428cc;
       }
-      &:nth-child(3n + 4) #${barID} {
+      &:nth-child(3n + 4) .${barID} {
         background: #ee7428cc;
       }
       &:hover {
@@ -102,7 +102,7 @@ class testV extends Component {
           <Item key={el.id}>
             <Value>{el.value}</Value>
             <Bar
-              id={barID}
+              className={barID}
               style={{
                 height: `${el.height}%`,
               }}
@@ -114,4 +114,4 @@ class testV extends Component {
     );
   }
 }
-export default testV;
+export default Horizontal;

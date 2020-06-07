@@ -1,6 +1,5 @@
 import { nanoid } from 'nanoid';
 
-const chartId = nanoid();
 const mapper = data => {
   const percent = 100 / Math.max(...data.map(item => item.value));
   return data

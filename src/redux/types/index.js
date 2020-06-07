@@ -26,6 +26,7 @@ export const AUTH_LOGOUT_FAILURE = 'AUTH_LOGOUT_FAILURE';
 export const INIT_KAPUSTA_STARTED = 'INIT_KAPUSTA_STARTED';
 export const INIT_KAPUSTA_SUCCESS = 'INIT_KAPUSTA_SUCCESS';
 export const INIT_KAPUSTA_FAILURE = 'INIT_KAPUSTA_FAILURE';
+export const INIT_KAPUSTA_LOGOUT = 'INIT_KAPUSTA_LOGOUT';
 
 // -----// BALANCE //-----//
 
@@ -118,3 +119,12 @@ export const GET_TRANSACTIONS_FAILURE = 'GET_TRANSACTIONS_FAILURE';
 
 // --- // SET_PERIOD // --- //
 export const SET_PERIOD = 'SET_PERIOD';
+
+// --- // SET_CURRENT_DATE // --- //
+export const SET_CURRENT_DATE = 'SET_CURRENT_DATE';
+// --- // SET_CURRENT_CATEGORY // --- //
+export const SET_CURRENT_CATEGORY = 'SET_CURRENT_CATEGORY';
+// --- // SET_IS_MODAL // --- //
+export const SET_IS_MODAL = 'SET_IS_MODAL';
+// --- // SET_IS_MODAL // --- //
+export const SET_IS_EXPENSES = 'SET_IS_EXPENSES';

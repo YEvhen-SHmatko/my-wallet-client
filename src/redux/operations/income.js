@@ -24,7 +24,7 @@ export const getIncomes = () => {
       );
   };
 };
-export const postIncome = amount => {
+export const postIncome = (amount, date) => {
   return dispatch => {
     dispatch(actions.withOutPayload(types.POST_INCOME_STARTED));
     axios
@@ -32,7 +32,7 @@ export const postIncome = amount => {
         API.Income,
         JSON.stringify({
           amount,
-          date: new Date(),
+          date,
         }),
       )
       .then(res => {

@@ -9,7 +9,6 @@ import Cost from '../Cost';
 import MyDate from '../MyDate';
 import Category from '../Category';
 import Name from '../Name';
-import { transformMoney } from '../../services/hendlers';
 
 const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
   const [data, setData] = useState([]);
@@ -21,25 +20,6 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
     setData(dataIncomes);
   }, [isExpenses, dataIncomes, dataExpenses]);
 
-  const mapper = mapData => {
-    if (isExpenses) {
-      return mapData.map(cost => ({
-        id: `${cost.forDeleteId}/${cost.costsId}`,
-        date: cost.date,
-        name: cost.product.name,
-        category: cost.product.category.name,
-        cost: transformMoney(cost.amount, true, false),
-      }));
-    }
-    return mapData.map(income => ({
-      // eslint-disable-next-line no-underscore-dangle
-      id: income.incomeId || income._id,
-      date: income.date,
-      name: 'Пополнение баланса',
-      category: 'Доходы',
-      cost: transformMoney(income.amount, false, false),
-    }));
-  };
   return (
     <>
       <Mobile>{/* redirect */}</Mobile>
@@ -55,7 +35,7 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
             </div>
             <ul className={Styles.list}>
               {data.length !== 0 &&
-                mapper(data).map(item => (
+                data.map(item => (
                   <li key={item.id} className={Styles.item}>
                     <MyDate date={item.date} />
                     <Name name={item.name} />
@@ -71,16 +51,14 @@ const Table = ({ isExpenses, dataIncomes, dataExpenses }) => {
     </>
   );
 };
-Table.defaultProps = {
-  isExpenses: false,
-};
 Table.propTypes = {
-  isExpenses: PropTypes.bool,
+  isExpenses: PropTypes.bool.isRequired,
   dataIncomes: PropTypes.arrayOf(PropTypes.any).isRequired,
   dataExpenses: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 const MSTP = store => ({
-  dataIncomes: selectors.getIncomes(store),
-  dataExpenses: selectors.getCosts(store),
+  dataIncomes: selectors.getNewIncomes(store),
+  dataExpenses: selectors.getNewCosts(store),
+  isExpenses: selectors.getIsExpenses(store),
 });
 export default connect(MSTP)(Table);
