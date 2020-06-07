@@ -16,31 +16,26 @@ export const getCosts = () => {
         );
       })
       .catch(error =>
-        dispatch(
-          actions.withPayload(types.GET_COSTS_FAILURE, {
-            // status: error.message,
-          }),
-        ),
+        dispatch(actions.withPayload(types.GET_COSTS_FAILURE, {})),
       );
   };
 };
-export const postCost = (productId, amount) => {
+export const postCost = (productId, amount, date) => {
   return dispatch => {
     dispatch(actions.withOutPayload(types.POST_COSTS_STARTED));
     axios
       .post(
         API.Costs,
         JSON.stringify({
-          date: new Date(),
+          date,
           product: {
             productId,
             amount,
-            date: new Date(),
+            date,
           },
         }),
       )
       .then(res => {
-        console.log(res.data);
         dispatch(
           actions.withPayload(types.POST_COSTS_SUCCESS, {
             // balance: res.data.balance,

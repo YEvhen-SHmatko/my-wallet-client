@@ -1,15 +1,6 @@
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import {
-  Mobile,
-  Default,
-  isMobile,
-  isTablet,
-  isDefault,
-} from '../../services/mediaQuery';
-import routes from '../../routes';
+import * as MQ from '../../services/mediaQuery';
 import Styles from './index.module.css';
 import Header from '../Header';
 import Background from '../Background';
@@ -21,17 +12,11 @@ import Period from '../Period';
 import BalanceReport from '../BalanceReport';
 import GoBack from '../GoBack';
 import MyChart from '../MyChart';
-import * as selectors from '../../redux/selectors';
 
-const Report = ({ categories }) => {
-  const IsMobile = isMobile(useMediaQuery);
-  const IsTablet = isTablet(useMediaQuery);
-  const IsDefault = isDefault(useMediaQuery);
-
-  let data = null;
-  if (categories && categories.length > 0) {
-    data = categories[0].allCosts;
-  }
+const Report = () => {
+  const IsMobile = MQ.isMobile(useMediaQuery);
+  const IsTablet = MQ.isTablet(useMediaQuery);
+  const IsDefault = MQ.isDefault(useMediaQuery);
   return (
     <>
       <Header />
@@ -50,17 +35,17 @@ const Report = ({ categories }) => {
             <div
               className={IsDefault ? Styles.Default_head : Styles.Mobile_head}
             >
-              <GoBack to={routes.DashBoardPage.path} />
-              <Mobile>
+              <GoBack />
+              <MQ.Mobile>
                 <div className={Styles.Period}>
                   <Period />
                 </div>
                 <BalanceReport />
-              </Mobile>
-              <Default>
+              </MQ.Mobile>
+              <MQ.Default>
                 <BalanceReport />
                 <Period />
-              </Default>
+              </MQ.Default>
             </div>
             <div
               className={IsDefault ? Styles.Default_info : Styles.Mobile_info}
@@ -72,13 +57,7 @@ const Report = ({ categories }) => {
             >
               <CategoryList />
             </div>
-            {data && (
-              <div
-                className={IsDefault ? Styles.Default_info : Styles.Mobile_info}
-              >
-                <MyChart data={data} />
-              </div>
-            )}
+            <MyChart />
           </div>
         </Container>
       </main>
@@ -88,10 +67,4 @@ const Report = ({ categories }) => {
     </>
   );
 };
-Report.propTypes = {
-  categories: PropTypes.arrayOf(PropTypes.any).isRequired,
-};
-const MSTP = store => ({
-  categories: selectors.getCostByPeriodAndCategories(store),
-});
-export default connect(MSTP, null)(Report);
+export default Report;

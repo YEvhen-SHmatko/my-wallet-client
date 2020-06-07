@@ -34,11 +34,8 @@ const MonthStatistic = ({ costsStatistic, incomeStatistic, isExpenses }) => {
     </>
   );
 };
-MonthStatistic.defaultProps = {
-  isExpenses: false,
-};
 MonthStatistic.propTypes = {
-  isExpenses: PropTypes.bool,
+  isExpenses: PropTypes.bool.isRequired,
   costsStatistic: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -58,6 +55,7 @@ MonthStatistic.propTypes = {
 };
 const MSTP = store => ({
   costsStatistic: selectors.getCostsStatistic(store),
-  incomeStatistic: selectors.getCostsStatistic(store),
+  incomeStatistic: selectors.getIncomesStatistic(store),
+  isExpenses: selectors.getIsExpenses(store),
 });
-export default connect(MSTP, null)(MonthStatistic);
+export default connect(MSTP)(MonthStatistic);

@@ -18,6 +18,7 @@ const CategoryList = ({ categories }) => {
               <CategoryIcon
                 key={category.id}
                 title={category.name.replace(',', ' ')}
+                category={category.name}
                 cost={transformMoney(category.amount, null, false)}
                 src={srcIcon(category.name)}
               />

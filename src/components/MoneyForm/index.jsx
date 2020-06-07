@@ -7,7 +7,13 @@ import * as cost from '../../redux/operations/cost';
 import Styles from './index.module.css';
 import Wrapper from '../Wrapper';
 
-const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
+const MoneyForm = ({
+  isExpenses,
+  postIncome,
+  postCost,
+  dataProducts,
+  currentDate,
+}) => {
   const [placeholder, setPlaceholder] = useState(
     'Здесь ты будешь вносить на что ты тратишь деньги',
   );
@@ -34,6 +40,7 @@ const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
     if (isExpenses) {
       setCurrentValue(`${(0).toFixed(2)}`);
       setText('');
+      setNewValue('');
       return;
     }
     setCurrentValue(`${(0).toFixed(2)}`);
@@ -50,11 +57,11 @@ const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
     if (isExpenses) {
       if (id === '') return;
       if (+currentValue === 0) return;
-      postCost(id, currentValue);
+      postCost(id, currentValue, currentDate);
       handleClear();
       return;
     }
-    postIncome(+newValue);
+    postIncome(+newValue, currentDate);
     handleClear();
   };
 
@@ -151,18 +158,17 @@ const MoneyForm = ({ isExpenses, postIncome, postCost, dataProducts }) => {
     </div>
   );
 };
-MoneyForm.defaultProps = {
-  isExpenses: false,
-  dataProducts: [],
-};
 MoneyForm.propTypes = {
-  isExpenses: PropTypes.bool,
+  isExpenses: PropTypes.bool.isRequired,
   postIncome: PropTypes.func.isRequired,
   postCost: PropTypes.func.isRequired,
-  dataProducts: PropTypes.arrayOf(PropTypes.any),
+  dataProducts: PropTypes.arrayOf(PropTypes.any).isRequired,
+  currentDate: PropTypes.objectOf(PropTypes.any).isRequired,
 };
 const MSTP = store => ({
   dataProducts: selectors.getProducts(store),
+  currentDate: selectors.getCurrentDate(store),
+  isExpenses: selectors.getIsExpenses(store),
 });
 export default connect(MSTP, {
   postIncome: income.postIncome,

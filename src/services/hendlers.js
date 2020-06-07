@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { nanoid } from 'nanoid';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -47,6 +48,7 @@ export const thisDate = period => {
   const data = moment(new Date());
   if (period && period.year) data.year(period.year);
   if (period && period.month) data.month(period.month - 1);
+  if (period && period.day) data.days(period.day);
   return data;
 };
 

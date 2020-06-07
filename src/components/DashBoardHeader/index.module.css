@@ -14,17 +14,32 @@
   justify-content: flex-start;
   align-items: flex-end;
 }
+.start_disabled {
+  composes: start;
+  cursor: none;
+  pointer-events: none;
+}
 .center {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.center_disabled {
+  composes: center;
+  cursor: none;
+  pointer-events: none;
+}
 .end {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+.end_disabled {
+  composes: end;
+  cursor: none;
+  pointer-events: none;
 }
 .Default_mainHeader {
   composes: mainHeader;
@@ -39,15 +54,27 @@
   justify-content: flex-start;
   align-items: flex-end;
 }
+.Default_start_disabled {
+  composes: start_disabled;
+  composes: Default_start;
+}
 .Default_center {
   composes: center;
   width: 50%;
   justify-content: center;
   align-items: center;
 }
+.Default_center_disabled {
+  composes: center_disabled;
+  composes: Default_center;
+}
 .Default_end {
   composes: end;
   width: 30%;
   justify-content: flex-end;
   align-items: center;
+}
+.Default_end_disabled {
+  composes: end_disabled;
+  composes: Default_end;
 }

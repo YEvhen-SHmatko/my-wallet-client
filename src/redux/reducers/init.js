@@ -1,13 +1,16 @@
 import * as types from '../types';
 import INITIAL_STATE from '../initState';
 
-const initReducer = (state = INITIAL_STATE.init, { payload, type }) => {
+const initReducer = (state = INITIAL_STATE.init, { type }) => {
   switch (type) {
-    case types.INIT_KAPUSTA_STARTED:
-    case types.INIT_KAPUSTA_FAILURE:
-      return state;
-    case types.INIT_KAPUSTA_SUCCESS:
-      return payload;
+    case types.GET_TRANSACTIONS_SUCCESS:
+    case types.GET_CATEGORIES_SUCCESS:
+    case types.GET_PRODUCTS_SUCCESS:
+      return true;
+    case types.GET_TRANSACTIONS_FAILURE:
+    case types.GET_CATEGORIES_FAILURE:
+    case types.GET_PRODUCTS_FAILURE:
+      return false;
     default:
       return state;
   }

@@ -1,0 +1,8 @@
+.section {
+  position: fixed;
+  z-index: 100000;
+  width: 100vw;
+  height: 100vh;
+  overflow: none;
+  background: #fff;
+}

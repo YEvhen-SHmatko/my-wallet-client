@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Styles from './index.module.css';
 import Header from '../Header';
 import Background from '../Background';
@@ -7,27 +6,21 @@ import Container from '../Container';
 import MoneyForm from '../MoneyForm';
 import GoBack from '../GoBack';
 
-const Modal = ({ onClick, isExpenses }) => {
+const Modal = () => {
   return (
-    <>
+    <section className={Styles.section}>
       <Header />
-      <main className={Styles.main}>
+      <div>
         <Background />
+      </div>
+      <main className={Styles.main}>
         <Container>
-          <GoBack onClick={onClick} />
-          <MoneyForm isExpenses={isExpenses} />
+          <GoBack />
+          <MoneyForm />
         </Container>
       </main>
-    </>
+    </section>
   );
-};
-
-Modal.defaultProps = {
-  isExpenses: false,
-};
-Modal.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  isExpenses: PropTypes.bool,
 };
 
 export default Modal;

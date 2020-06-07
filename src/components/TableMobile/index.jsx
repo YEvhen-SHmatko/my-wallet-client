@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
+import { Redirect, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import * as selectors from '../../redux/selectors';
+import operationExpenses from '../../redux/operations/isExpenses';
+import operationModal from '../../redux/operations/isModal';
 import routes from '../../routes';
 import { Mobile, Default } from '../../services/mediaQuery';
 import test from './MOCK_DATA.json';
@@ -10,47 +15,32 @@ import Date from '../MyDate';
 import Category from '../Category';
 import Name from '../Name';
 import Button from '../Button';
-import Modal from '../Modal';
 
-const TableMobile = () => {
-  const [isModal, setIsModal] = useState(false);
-  const [isExpenses, setIsExpenses] = useState(false);
-
-  const openModal = e => {
-    if (e.target.textContent === 'Pасход') {
-      setIsExpenses(true);
-    }
-    setIsModal(true);
-  };
-
-  const closeModal = () => {
-    setIsModal(false);
-    setIsExpenses(false);
-  };
-
+const TableMobile = ({ setIsExpenses, setIsModal, data }) => {
+  const history = useHistory();
   const height =
     window.innerHeight - 364 < 180 ? 180 : window.innerHeight - 364;
+  const handleExpenses = () => {
+    history.replace(routes.Expenses.path);
+    setIsExpenses(true);
+    setIsModal(true);
+  };
+  const handleIncomes = () => {
+    history.replace(routes.Income.path);
+    setIsExpenses(false);
+    setIsModal(true);
+  };
   return (
     <>
       <Mobile>
-        {isModal ? (
-          <div
-            className={Styles.modal}
-            style={{
-              width: window.innerWidth,
-              left: `-${(window.innerWidth - 320) / 2}px`,
-            }}
-          >
-            <Modal onClick={closeModal} isExpenses={isExpenses} />
-          </div>
-        ) : (
+        {data && (
           <>
             <section
               className={Styles.section}
               style={{ height: `${height}px` }}
             >
               <ul className={Styles.list}>
-                {test.map(item => (
+                {data.map(item => (
                   <li key={item.id} className={Styles.item}>
                     <div className={Styles.first}>
                       <Name name={item.name} />
@@ -61,15 +51,15 @@ const TableMobile = () => {
                     </div>
                     <div className={Styles.second}>
                       <Cost cost={item.cost} />
-                      <Trash id={item.id} />
+                      <Trash id={`${item.id}`} />
                     </div>
                   </li>
                 ))}
               </ul>
             </section>
             <section className={Styles.btn}>
-              <Button title="Pасход" onClick={openModal} />
-              <Button title="Доход" onClick={openModal} />
+              <Button title="Pасход" onClick={handleExpenses} />
+              <Button title="Доход" onClick={handleIncomes} />
             </section>
           </>
         )}
@@ -81,4 +71,16 @@ const TableMobile = () => {
   );
 };
 
-export default TableMobile;
+TableMobile.propTypes = {
+  // dataIncomes: PropTypes.arrayOf(PropTypes.any).isRequired,
+  data: PropTypes.arrayOf(PropTypes.any).isRequired,
+  setIsExpenses: PropTypes.func.isRequired,
+  setIsModal: PropTypes.func.isRequired,
+};
+const MSTP = store => ({
+  data: selectors.getDataTableMobile(store),
+});
+export default connect(MSTP, {
+  setIsExpenses: operationExpenses,
+  setIsModal: operationModal,
+})(TableMobile);

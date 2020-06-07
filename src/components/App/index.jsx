@@ -1,46 +1,17 @@
-import React, { Suspense } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import operations from '../../redux/operations/init';
-import routes from '../../routes';
+import App from './App';
+import * as selectors from '../../redux/selectors';
+import transactions from '../../redux/operations/transactions';
+import * as product from '../../redux/operations/product';
+import * as category from '../../redux/operations/category';
 
-const App = ({ isLogin, initKapusta }) => {
-  return (
-    <Suspense fallback="Loader">
-      <Route path={routes.Home.path}>
-        {isLogin ? (
-          <>
-            {initKapusta()}
-            {/* <Redirect to={routes.DashBoardPage.path} /> */}
-            <Redirect to={routes.ReportPage.path} />
-          </>
-        ) : (
-          <Redirect to={routes.AUTH_PAGE.path} />
-        )}
-        <Switch>
-          <Route
-            path={routes.AUTH_PAGE.path}
-            component={routes.AUTH_PAGE.component}
-          />
-          <Route
-            path={routes.ReportPage.path}
-            component={routes.ReportPage.component}
-          />
-          <Route
-            path={routes.DashBoardPage.path}
-            component={routes.DashBoardPage.component}
-          />
-        </Switch>
-      </Route>
-    </Suspense>
-  );
-};
-App.propTypes = {
-  isLogin: PropTypes.bool.isRequired,
-  initKapusta: PropTypes.func.isRequired,
-};
 const MSTP = store => ({
-  isLogin: store.public.isLogin,
+  isModal: selectors.getIsModal(store),
+  isLogin: selectors.getIsLogin(store),
+  init: selectors.getInit(store),
 });
-export default connect(MSTP, { initKapusta: operations })(App);
+export default connect(MSTP, {
+  getTransactions: transactions,
+  getProduct: product.getProducts,
+  getCategory: category.getCategories,
+})(App);

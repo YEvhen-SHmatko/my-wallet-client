@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
-import { Link } from 'react-router-dom';
-import { isMobile, isTablet, Tablet, Desktop } from '../../services/mediaQuery';
+import { Link, useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import operationExpenses from '../../redux/operations/isExpenses';
+import operationModal from '../../redux/operations/isModal';
+import * as MQ from '../../services/mediaQuery';
 import Styles from './index.module.css';
+import routes from '../../routes';
 
-const Static = () => {
+const Icon = () => {
   return (
     <>
       <svg
@@ -18,46 +22,53 @@ const Static = () => {
         <path d="M0 0h24v24H0z" fill="none" />
         <path d="M21 11H6.83l3.58-3.59L9 6l-6 6 6 6 1.41-1.41L6.83 13H21z" />
       </svg>
-      <Tablet>
+      <MQ.Tablet>
         <span className={Styles.text}>Вернуться</span>
-      </Tablet>
-      <Desktop>
+      </MQ.Tablet>
+      <MQ.Desktop>
         <span className={Styles.text}>Вернуться на главную</span>
-      </Desktop>
+      </MQ.Desktop>
     </>
   );
 };
-const index = ({ onClick, to }) => {
-  if (to) {
-    const IsMobile = isMobile(useMediaQuery);
-    const IsTablet = isTablet(useMediaQuery);
-    return (
-      <Link
-        className={
-          IsMobile
-            ? Styles.Mobile_link
-            : IsTablet
-            ? Styles.Tablet_link
-            : Styles.Desktop_link
-        }
-        to={to}
-      >
-        <Static />
-      </Link>
-    );
-  }
+const Goback = ({ setIsExpenses, setIsModal }) => {
+  const IsMobile = MQ.isMobile(useMediaQuery);
+  const IsTablet = MQ.isTablet(useMediaQuery);
+  const history = useHistory();
+  const handleClick = () => {
+    history.replace(routes.DashBoardPage.path);
+    setIsExpenses(true);
+    setIsModal(false);
+  };
   return (
-    <button type="button" className={Styles.btn} onClick={onClick}>
-      <Static />
-    </button>
+    <>
+      <MQ.Mobile>
+        <button type="button" className={Styles.btn} onClick={handleClick}>
+          <Icon />
+        </button>
+      </MQ.Mobile>
+      <MQ.Default>
+        <Link
+          className={
+            IsMobile
+              ? Styles.Mobile_link
+              : IsTablet
+              ? Styles.Tablet_link
+              : Styles.Desktop_link
+          }
+          to={routes.Expenses.path}
+        >
+          <Icon />
+        </Link>
+      </MQ.Default>
+    </>
   );
 };
-index.defaultProps = {
-  onClick: () => false,
-  to: '',
+Goback.propTypes = {
+  setIsExpenses: PropTypes.func.isRequired,
+  setIsModal: PropTypes.func.isRequired,
 };
-index.propTypes = {
-  onClick: PropTypes.func,
-  to: PropTypes.string,
-};
-export default index;
+export default connect(null, {
+  setIsExpenses: operationExpenses,
+  setIsModal: operationModal,
+})(Goback);

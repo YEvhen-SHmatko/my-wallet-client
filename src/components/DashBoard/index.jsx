@@ -1,6 +1,9 @@
 import React, { Suspense } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-import { Mobile, Default } from '../../services/mediaQuery';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import * as MQ from '../../services/mediaQuery';
+import * as selectors from '../../redux/selectors';
 import routes from '../../routes';
 import Styles from './index.module.css';
 import Header from '../Header';
@@ -10,8 +13,10 @@ import Wrapper from '../Wrapper';
 import DecorationFirst from '../Decoration/First';
 import DashBoardHeader from '../DashBoardHeader';
 import TableMobile from '../TableMobile';
+import Loader from '../Loader';
 
-const DashBoard = () => {
+const DashBoard = ({ balance }) => {
+  const disable = !balance;
   return (
     <>
       <Header />
@@ -19,33 +24,29 @@ const DashBoard = () => {
         <Background />
         <Container>
           <DashBoardHeader />
-          <Mobile>
-            <Suspense fallback="Loader">
-              <Redirect to={routes.DashBoardPage.path} />
-            </Suspense>
-            <TableMobile />
-          </Mobile>
-          <Default>
-            <Suspense fallback="Loader">
-              <Redirect to={routes.Expenses.path} />
-            </Suspense>
-            <Wrapper className={Styles.mainBody}>
-              <Suspense fallback="Loader">
-                <Switch>
-                  <Route
-                    path={routes.Expenses.path}
-                    exact
-                    component={routes.Expenses.component}
-                  />
-                  <Route
-                    path={routes.Income.path}
-                    exact
-                    component={routes.Income.component}
-                  />
-                </Switch>
-              </Suspense>
-            </Wrapper>
-          </Default>
+          <MQ.Mobile>{!disable && <TableMobile />}</MQ.Mobile>
+          <MQ.Default>
+            {!disable && (
+              <Wrapper
+                className={disable ? Styles.mainBody_disabled : Styles.mainBody}
+              >
+                <Suspense fallback={<Loader />}>
+                  <Switch>
+                    <Route
+                      path={routes.Expenses.path}
+                      exact
+                      component={routes.Expenses.component}
+                    />
+                    <Route
+                      path={routes.Income.path}
+                      exact
+                      component={routes.Income.component}
+                    />
+                  </Switch>
+                </Suspense>
+              </Wrapper>
+            )}
+          </MQ.Default>
         </Container>
       </main>
       <footer className={Styles.footer}>
@@ -54,4 +55,10 @@ const DashBoard = () => {
     </>
   );
 };
-export default DashBoard;
+DashBoard.propTypes = {
+  balance: PropTypes.number.isRequired,
+};
+const MSTP = store => ({
+  balance: selectors.getBalance(store),
+});
+export default connect(MSTP)(DashBoard);
