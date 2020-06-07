@@ -5,17 +5,10 @@ export const setLS = (key, value) => {
     throw new Error(error);
   }
 };
-export const getLS = key => {
+export const getLS = async key => {
   try {
-    const items = localStorage.getItem(key);
-    return items ? JSON.parse(items) : null;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
-export const removeLS = key => {
-  try {
-    localStorage.removeItem(key);
+    const items = await localStorage.getItem(key);
+    return items;
   } catch (error) {
     throw new Error(error);
   }

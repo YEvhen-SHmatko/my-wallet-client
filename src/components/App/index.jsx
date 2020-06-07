@@ -8,6 +8,7 @@ import * as category from '../../redux/operations/category';
 const MSTP = store => ({
   isModal: selectors.getIsModal(store),
   isLogin: selectors.getIsLogin(store),
+  session: selectors.getSession(store),
   init: selectors.getInit(store),
 });
 export default connect(MSTP, {
