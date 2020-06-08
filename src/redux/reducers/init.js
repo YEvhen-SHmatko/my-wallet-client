@@ -10,6 +10,7 @@ const initReducer = (state = INITIAL_STATE.init, { type }) => {
     case types.GET_TRANSACTIONS_FAILURE:
     case types.GET_CATEGORIES_FAILURE:
     case types.GET_PRODUCTS_FAILURE:
+    case types.AUTH_LOGOUT_SUCCESS:
       return false;
     default:
       return state;

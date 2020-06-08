@@ -67,7 +67,10 @@ const MoneyForm = ({
 
   const handleValueChange = e => {
     const { value } = e.target;
-    if (!+value) return;
+    if (!+value) {
+      setCurrentValue(0);
+      return;
+    }
     if (value < 99999.99) {
       setCurrentValue(value);
     }

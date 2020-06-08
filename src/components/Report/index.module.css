@@ -32,6 +32,9 @@
 }
 .Period {
   padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .Mobile_info {
   padding: 20px 20px 0;

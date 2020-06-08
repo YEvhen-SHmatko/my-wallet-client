@@ -1,9 +1,11 @@
 import { thisDate } from '../services/hendlers';
+import Loader from '../components/Loader';
 
 const initState = {
   public: {
     status: '',
     fullName: '',
+    email: '',
     session: '',
     isLogin: false,
   },
@@ -24,7 +26,10 @@ const initState = {
   error: {
     message: '',
   },
-  isModal: false,
+  isModal: {
+    open: false,
+    Component: Loader,
+  },
   isExpenses: true,
 };
 export default initState;

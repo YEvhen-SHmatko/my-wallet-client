@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import operationExpenses from '../../redux/operations/isExpenses';
 import operationModal from '../../redux/operations/isModal';
 import * as MQ from '../../services/mediaQuery';
 import Styles from './index.module.css';
 import routes from '../../routes';
+import Loader from '../Loader';
 
 const Icon = () => {
   return (
@@ -32,13 +33,17 @@ const Icon = () => {
   );
 };
 const Goback = ({ setIsExpenses, setIsModal }) => {
-  const IsMobile = MQ.isMobile(useMediaQuery);
   const IsTablet = MQ.isTablet(useMediaQuery);
+  const IsDefault = MQ.isDefault(useMediaQuery);
   const history = useHistory();
   const handleClick = () => {
-    history.replace(routes.DashBoardPage.path);
+    if (IsDefault) {
+      history.replace(routes.Expenses.path);
+    } else {
+      history.replace(routes.DashBoardPage.path);
+    }
     setIsExpenses(true);
-    setIsModal(false);
+    setIsModal({ open: false, Component: Loader });
   };
   return (
     <>
@@ -48,18 +53,13 @@ const Goback = ({ setIsExpenses, setIsModal }) => {
         </button>
       </MQ.Mobile>
       <MQ.Default>
-        <Link
-          className={
-            IsMobile
-              ? Styles.Mobile_link
-              : IsTablet
-              ? Styles.Tablet_link
-              : Styles.Desktop_link
-          }
-          to={routes.Expenses.path}
+        <button
+          type="button"
+          className={IsTablet ? Styles.Tablet_link : Styles.Desktop_link}
+          onClick={handleClick}
         >
           <Icon />
-        </Link>
+        </button>
       </MQ.Default>
     </>
   );

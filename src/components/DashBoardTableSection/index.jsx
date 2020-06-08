@@ -6,9 +6,9 @@ import MoneyForm from '../MoneyForm';
 import Table from '../Table';
 import MonthStatistic from '../MonthStatistic';
 import Styles from './index.module.css';
-import Modal from '../Modal';
+import Modal from '../MobileModal';
 
-const ExpensesSection = () => {
+const DashBoardTableSection = () => {
   const IsMobile = MQ.isMobile(useMediaQuery);
   const IsTablet = MQ.isTablet(useMediaQuery);
   return (
@@ -39,4 +39,4 @@ const ExpensesSection = () => {
     </>
   );
 };
-export default ExpensesSection;
+export default DashBoardTableSection;

@@ -7,6 +7,7 @@ import {
 // -----// PUBLIC //-----//
 export const getStatus = store => store.public.status;
 export const getFullName = store => store.public.fullName;
+export const getEmail = store => store.public.email;
 export const getSession = store => store.public.session;
 export const getIsLogin = store => store.public.isLogin;
 

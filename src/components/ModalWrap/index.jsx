@@ -1,26 +1,32 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Styles from './index.module.css';
-import Header from '../Header';
 import Background from '../Background';
 import Container from '../Container';
-import MoneyForm from '../MoneyForm';
 import GoBack from '../GoBack';
+import Logo from '../Logo';
 
-const Modal = () => {
+const ModalWrap = ({ children }) => {
   return (
     <section className={Styles.section}>
-      <Header />
+      <header className={Styles.header}>
+        <Logo />
+      </header>
       <div>
         <Background />
       </div>
       <main className={Styles.main}>
         <Container>
-          <GoBack />
-          <MoneyForm />
+          <div className={Styles.goBack}>
+            <GoBack />
+          </div>
+          {children}
         </Container>
       </main>
     </section>
   );
 };
-
-export default Modal;
+ModalWrap.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+export default ModalWrap;

@@ -4,10 +4,14 @@ import Context from './context';
 
 const State = ({ children }) => {
   // -----// AUTH //-----//
-  const [firstName, FirstName] = useState('asd1');
-  const [lastName, LastName] = useState('asd1');
-  const [email, Email] = useState('asd1@asd.asd');
-  const [password, Password] = useState('asdasd');
+  // const [firstName, FirstName] = useState('asd1');
+  // const [lastName, LastName] = useState('asd1');
+  // const [email, Email] = useState('asd1@asd.asd');
+  // const [password, Password] = useState('asdasd');
+  const [firstName, FirstName] = useState('');
+  const [lastName, LastName] = useState('');
+  const [email, Email] = useState('');
+  const [password, Password] = useState('');
   // -----// DashBoard //-----//
   // -----// Report //-----//
   const set = () => ({

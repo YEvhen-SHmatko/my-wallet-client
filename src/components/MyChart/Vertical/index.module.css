@@ -1,0 +1,15 @@
+.Item {
+  transition: 'all, 0.4s';
+}
+.Item:last-child {
+  border-bottom: 0;
+}
+.Item:first-child .bar {
+  background: #ee7428cc;
+}
+.Item:nth-child(3n + 4) .bar {
+  background: #ee7428cc;
+}
+.Item:hover {
+  opacity: 0.8;
+}

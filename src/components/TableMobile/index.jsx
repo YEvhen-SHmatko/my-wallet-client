@@ -7,7 +7,6 @@ import operationExpenses from '../../redux/operations/isExpenses';
 import operationModal from '../../redux/operations/isModal';
 import routes from '../../routes';
 import { Mobile, Default } from '../../services/mediaQuery';
-import test from './MOCK_DATA.json';
 import Styles from './index.module.css';
 import Trash from '../Trash';
 import Cost from '../Cost';
@@ -15,6 +14,7 @@ import Date from '../MyDate';
 import Category from '../Category';
 import Name from '../Name';
 import Button from '../Button';
+import MobileModal from '../MobileModal';
 
 const TableMobile = ({ setIsExpenses, setIsModal, data }) => {
   const history = useHistory();
@@ -23,12 +23,12 @@ const TableMobile = ({ setIsExpenses, setIsModal, data }) => {
   const handleExpenses = () => {
     history.replace(routes.Expenses.path);
     setIsExpenses(true);
-    setIsModal(true);
+    setIsModal({ open: true, Component: MobileModal });
   };
   const handleIncomes = () => {
     history.replace(routes.Income.path);
     setIsExpenses(false);
-    setIsModal(true);
+    setIsModal({ open: true, Component: MobileModal });
   };
   return (
     <>

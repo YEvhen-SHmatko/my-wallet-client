@@ -1,32 +1,14 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch } from 'react-router-dom';
-import routes from '../../routes';
 import Styles from './index.module.css';
-import Loader from '../Loader';
 
-const LoaderModal = ({ component }) => (
+const LoaderModal = ({ Component }) => (
   <div className={Styles.section}>
-    {component || (
-      <Suspense fallback={<Loader />}>
-        <Switch>
-          <Route
-            path={routes.Expenses.path}
-            exact
-            component={routes.Expenses.component}
-          />
-          <Route
-            path={routes.Income.path}
-            exact
-            component={routes.Income.component}
-          />
-        </Switch>
-      </Suspense>
-    )}
+    <Component />
   </div>
 );
 
 LoaderModal.propTypes = {
-  component: PropTypes.node.isRequired,
+  Component: PropTypes.func.isRequired,
 };
 export default LoaderModal;

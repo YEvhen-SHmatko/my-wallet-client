@@ -14,6 +14,7 @@ const authReducer = (state = INITIAL_STATE.public, { payload, type }) => {
       return {
         status: payload.status,
         fullName: payload.user.userData.name.fullName,
+        email: payload.user.userData.email,
         session: payload.user.token,
         isLogin: true,
       };

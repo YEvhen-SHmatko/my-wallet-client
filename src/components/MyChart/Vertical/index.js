@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 import mapper from '../hendlers';
+import Styles from './index.module.css';
 
 class testV extends Component {
   static defaultProps = {
@@ -29,7 +29,6 @@ class testV extends Component {
 
   render() {
     const { options } = this.props;
-    const barID = nanoid();
     const newData = mapper(options.data);
     const newList = options.styles.list || {};
     const newItem = options.styles.item || {};
@@ -56,21 +55,8 @@ class testV extends Component {
         justifyContent: 'center',
         flexDirection: 'column',
         opacity: 1,
-        transition: 'all, 0.4s',
         ...newItem,
       }}
-      &:last-child {
-        border-bottom: 0;
-      }
-      &:first-child #${barID} {
-        background: #ee7428cc;
-      }
-      &:nth-child(3n + 4) #${barID} {
-        background: #ee7428cc;
-      }
-      &:hover {
-        opacity: 0.8;
-      }
     `;
     const Title = styled.div`
       ${{
@@ -103,7 +89,7 @@ class testV extends Component {
     return (
       <List>
         {newData.map(el => (
-          <Item key={el.id}>
+          <Item key={el.id} className={Styles.Item}>
             <Title
               style={{
                 width: `${el.height}%`,
@@ -113,7 +99,7 @@ class testV extends Component {
               <Value>{el.value}</Value>
             </Title>
             <Bar
-              id={barID}
+              className={Styles.bar}
               style={{
                 width: `${el.height}%`,
               }}

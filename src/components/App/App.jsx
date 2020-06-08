@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useMediaQuery } from 'react-responsive';
 import * as MQ from '../../services/mediaQuery';
@@ -22,16 +22,6 @@ const App = ({
   const IsMobile = MQ.isMobile(useMediaQuery);
 
   useEffect(() => {
-    if (init) {
-      if (IsMobile) {
-        history.replace(routes.DashBoardPage.path);
-      } else {
-        history.replace(routes.Expenses.path);
-      }
-    }
-  }, [init, IsMobile, history]);
-
-  useEffect(() => {
     if (isLogin) {
       getLS('persist:kapusta')
         .then(res => {
@@ -47,10 +37,22 @@ const App = ({
     }
     history.replace(routes.AUTH_LOGIN.path);
   }, [isLogin, getCategory, getProduct, getTransactions, history, session]);
+
+  useEffect(() => {
+    console.log(init);
+    if (init) {
+      if (IsMobile) {
+        history.replace(routes.DashBoardPage.path);
+        return;
+      }
+      history.replace(routes.Expenses.path);
+    }
+  }, [init, IsMobile, history]);
+
   return (
     <Suspense fallback={<Loader />}>
       <Route path={routes.Home.path}>
-        {isModal && <LoaderModal />}
+        {isModal.open && <LoaderModal Component={isModal.Component} />}
         <Switch>
           <Route
             path={routes.AUTH_PAGE.path}
@@ -76,7 +78,10 @@ App.propTypes = {
   getTransactions: PropTypes.func.isRequired,
   getProduct: PropTypes.func.isRequired,
   getCategory: PropTypes.func.isRequired,
-  isModal: PropTypes.bool.isRequired,
+  isModal: PropTypes.shape({
+    open: PropTypes.bool.isRequired,
+    Component: PropTypes.func.isRequired,
+  }).isRequired,
   isLogin: PropTypes.bool.isRequired,
   session: PropTypes.string,
   init: PropTypes.bool.isRequired,

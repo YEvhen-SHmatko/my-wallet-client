@@ -6,11 +6,10 @@ const AUTH_PAGE = React.lazy(() =>
 const DashBoardPage = React.lazy(() =>
   import('../pages/DashBoardPage' /* webpackChunkName: "DashBoardPage" */),
 );
-const Expenses = React.lazy(() =>
-  import('../components/ExpensesSection' /* webpackChunkName: "Expenses" */),
-);
-const Income = React.lazy(() =>
-  import('../components/IncomeSection' /* webpackChunkName: "Income" */),
+const DashBoardTableSection = React.lazy(() =>
+  import(
+    '../components/DashBoardTableSection' /* webpackChunkName: "DashBoardTableSection" */
+  ),
 );
 const ReportPage = React.lazy(() =>
   import('../pages/ReportPage' /* webpackChunkName: "ReportPage" */),
@@ -36,11 +35,11 @@ const routes = {
   },
   Expenses: {
     path: `${repositori}/dashboard/expenses`,
-    component: Expenses,
+    component: DashBoardTableSection,
   },
   Income: {
     path: `${repositori}/dashboard/income`,
-    component: Income,
+    component: DashBoardTableSection,
   },
   ReportPage: {
     path: `${repositori}/report`,

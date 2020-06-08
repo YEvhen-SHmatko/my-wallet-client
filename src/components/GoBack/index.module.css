@@ -1,16 +1,14 @@
-.Mobile_link {
-  width: 200px;
+.Tablet_link {
   display: flex;
   align-items: center;
   text-decoration: none;
   font-size: 13px;
   letter-spacing: 1px;
   color: #52555f;
+  background: transparent;
+  border: 1px solid transparent;
   font-weight: 400;
   text-align: right;
-}
-.Tablet_link {
-  composes: Mobile_link;
   width: 140px;
 }
 .Desktop_link {

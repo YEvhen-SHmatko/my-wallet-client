@@ -5,16 +5,13 @@ import Styles from './index.module.css';
 import Logo from '../Logo';
 import * as operations from '../../redux/operations/auth';
 import * as selectors from '../../redux/selectors';
+import HeaderUserSection from '../HeaderUserSection';
 
 const Header = ({ logout, isLogin }) => {
   return (
     <header className={Styles.header}>
       <Logo />
-      {isLogin && (
-        <button type="button" onClick={logout}>
-          exit
-        </button>
-      )}
+      {isLogin && <HeaderUserSection />}
     </header>
   );
 };
