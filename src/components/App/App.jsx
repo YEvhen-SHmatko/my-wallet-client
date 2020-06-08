@@ -22,32 +22,35 @@ const App = ({
   const IsMobile = MQ.isMobile(useMediaQuery);
 
   useEffect(() => {
-    if (isLogin) {
-      getLS('persist:kapusta')
-        .then(res => {
-          const token = JSON.parse(JSON.parse(res).public).session || session;
-          axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-        })
-        .then(() => {
-          getTransactions();
-          getProduct();
-          getCategory();
-        });
-      return;
+    if (!isLogin) {
+      history.replace(routes.AUTH_LOGIN.path);
     }
-    history.replace(routes.AUTH_LOGIN.path);
-  }, [isLogin, getCategory, getProduct, getTransactions, history, session]);
+  }, [isLogin, history]);
 
   useEffect(() => {
-    console.log(init);
-    if (init) {
-      if (IsMobile) {
-        history.replace(routes.DashBoardPage.path);
-        return;
-      }
-      history.replace(routes.Expenses.path);
+    if (isLogin && session && !init) {
+      axios.defaults.headers.common.Authorization = `Bearer ${session}`;
+      getTransactions();
+      getProduct();
+      getCategory();
     }
-  }, [init, IsMobile, history]);
+    if (isLogin && session && init && IsMobile) {
+      history.replace(routes.DashBoardPage.path);
+    } else if (isLogin && session && init && !IsMobile) {
+      history.replace(routes.Expenses.path);
+    } else {
+      history.replace(routes.AUTH_LOGIN.path);
+    }
+  }, [
+    isLogin,
+    session,
+    init,
+    IsMobile,
+    getTransactions,
+    getProduct,
+    getCategory,
+    history,
+  ]);
 
   return (
     <Suspense fallback={<Loader />}>
