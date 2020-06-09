@@ -68,7 +68,7 @@ const MoneyForm = ({
   const handleValueChange = e => {
     const { value } = e.target;
     if (!+value) {
-      setCurrentValue(0);
+      setCurrentValue('');
       return;
     }
     if (value < 99999.99) {
@@ -77,7 +77,7 @@ const MoneyForm = ({
   };
 
   const handleFocus = () => {
-    setCurrentValue(newValue);
+    setCurrentValue('');
   };
 
   const handleBlur = () => {

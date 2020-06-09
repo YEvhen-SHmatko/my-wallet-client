@@ -3,6 +3,7 @@ import {
   getAmountByPeriod,
   CostByPeriodAndCategories,
   transformMoney,
+  dataByDate,
 } from '../../services/hendlers';
 // -----// PUBLIC //-----//
 export const getStatus = store => store.public.status;
@@ -33,28 +34,25 @@ export const getCurrentCategory = store => store.currentCategory;
 export const getIsModal = store => store.isModal;
 export const getIsExpenses = store => store.isExpenses;
 
-export const getCostsStatistic = createSelector(
-  [getPeriod, getCosts],
-  (period, costs) =>
-    getAmountByPeriod({ data: costs, startPeriod: period, viewOld: 6 }),
+export const getCostsStatistic = createSelector([getCosts], costs =>
+  getAmountByPeriod({ data: costs, viewOld: 6 }),
 );
 
-export const getIncomesStatistic = createSelector(
-  [getPeriod, getIncomes],
-  (period, data) =>
-    getAmountByPeriod({
-      data,
-      startPeriod: period,
-      viewOld: 6,
-    }),
+export const getIncomesStatistic = createSelector([getIncomes], data =>
+  getAmountByPeriod({
+    data,
+    viewOld: 6,
+  }),
 );
 export const getMonthCosts = createSelector(
-  [getCostsStatistic],
-  costs => costs[0].amount,
+  [getCosts, getPeriod],
+  (costs, period) =>
+    dataByDate(costs, period).reduce((acc, cost) => acc + cost.amount, 0),
 );
 export const getMonthIncomes = createSelector(
-  [getIncomesStatistic],
-  incomes => incomes[0].amount,
+  [getIncomes, getPeriod],
+  (incomes, period) =>
+    dataByDate(incomes, period).reduce((acc, income) => acc + income.amount, 0),
 );
 export const getCostByPeriodAndCategories = createSelector(
   [getPeriod, getCosts, getCategories],
@@ -112,22 +110,3 @@ export const getDataTableMobile = createSelector(
     return result;
   },
 );
-
-// export const setCostsByPeriod = createSelector([getCosts], costs =>
-//   costs.reduce((acc, cost) => {
-//     const key = `${thisDate(cost.date).format('YYYY-MM')}`;
-//     if (!acc[key]) {
-//       acc[key] = [cost];
-//       return acc;
-//     }
-//     acc[key] = [...acc[key], cost];
-//     return acc;
-//   }, {}),
-// );
-// export const getFilterContacts = createSelector(
-//   [getContacts, getFilter],
-//   (contacts, filter) =>
-//     contacts.filter(contact =>
-//       contact.name.toLowerCase().includes(filter.toLowerCase()),
-//     ),
-// );

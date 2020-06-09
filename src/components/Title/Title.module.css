@@ -22,6 +22,7 @@
 
 .s {
   position: relative;
+  color: #000000;
   display: inline-block;
 }
 .s::before {

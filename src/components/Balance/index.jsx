@@ -64,13 +64,13 @@ const Balance = ({ postBalance, balance }) => {
     </div>
   );
 };
-Balance.defaultProps = {
-  balance: 0,
-  postBalance: e => console.log(e),
-};
+// Balance.defaultProps = {
+//   balance: 0,
+//   postBalance: e => console.log(e),
+// };
 Balance.propTypes = {
-  balance: PropTypes.number,
-  postBalance: PropTypes.func,
+  balance: PropTypes.number.isRequired,
+  postBalance: PropTypes.func.isRequired,
 };
 const MSTP = store => ({
   balance: selectors.getBalance(store),

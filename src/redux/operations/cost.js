@@ -38,7 +38,7 @@ export const postCost = (productId, amount, date) => {
       .then(res => {
         dispatch(
           actions.withPayload(types.POST_COSTS_SUCCESS, {
-            // balance: res.data.balance,
+            balance: res.data.balance,
           }),
         );
       })

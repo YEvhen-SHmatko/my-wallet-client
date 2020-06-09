@@ -51,6 +51,10 @@ export const thisDate = period => {
   if (period && period.day) data.days(period.day);
   return data;
 };
+export const startPeriod = {
+  month: +thisDate().format('M'),
+  year: +thisDate().format('YYYY'),
+};
 
 export const TwoDigits = value => {
   const result = +value >= 10 ? +value : `0${+value}`;
@@ -87,13 +91,14 @@ export const getAmountByMonth = (data, { year, month }) => {
   const result = {
     id: nanoid(),
     month: thisDate({ month }).format('MMMM'),
+    monthNumder: +thisDate({ month }).format('M'),
     year: +thisDate({ year }).format('YYYY'),
     amount,
   };
   return result;
 };
 
-export const getAmountByPeriod = ({ data, startPeriod, viewOld }) => {
+export const getAmountByPeriod = ({ data, viewOld }) => {
   let { year, month } = startPeriod;
   const result = [];
   for (let i = 1; i <= viewOld; i += 1) {
